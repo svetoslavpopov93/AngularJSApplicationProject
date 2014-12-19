@@ -1,0 +1,6 @@
+C:\Users\Svetoslav\Documents\GitHub\AngularJSApplicationProject\AngularJSSAPProject\AngularJSSAPProject\bin\AngularJSSAPProject.dll.config
+C:\Users\Svetoslav\Documents\GitHub\AngularJSApplicationProject\AngularJSSAPProject\AngularJSSAPProject\bin\AngularJSSAPProject.dll
+C:\Users\Svetoslav\Documents\GitHub\AngularJSApplicationProject\AngularJSSAPProject\AngularJSSAPProject\bin\AngularJSSAPProject.pdb
+C:\Users\Svetoslav\Documents\GitHub\AngularJSApplicationProject\AngularJSSAPProject\AngularJSSAPProject\obj\Debug\AngularJSSAPProject.csprojResolveAssemblyReference.cache
+C:\Users\Svetoslav\Documents\GitHub\AngularJSApplicationProject\AngularJSSAPProject\AngularJSSAPProject\obj\Debug\AngularJSSAPProject.dll
+C:\Users\Svetoslav\Documents\GitHub\AngularJSApplicationProject\AngularJSSAPProject\AngularJSSAPProject\obj\Debug\AngularJSSAPProject.pdb
