@@ -60,6 +60,11 @@
     <Content Include="index.html" />
     <Content Include="scripts\angular.js" />
     <Content Include="scripts\app.js" />
+    <Content Include="scripts\controllers.js" />
+    <Content Include="styles\main.css" />
+    <Content Include="views\home-view.html" />
+    <Content Include="views\login-view.html" />
+    <Content Include="views\register-view.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

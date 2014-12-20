@@ -1,0 +1,48 @@
+﻿body, section, article, header, footer, div, span, p, ul, ol, li, table, td, th, tr, img, input, button, h1 {
+    padding: 0;
+    margin: 0;
+}
+
+header{
+    background-color: #A9D18E;
+    height: 60px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 1.3em;
+    font-family: Verdana;
+}
+
+aside{
+    display: inline-block;
+    background-color: #A9D18E;
+    width: 260px;
+    height: 200px;
+}
+
+#left_aside {
+    float: left;
+    margin-left: 50px;
+} 
+
+#right_aside{
+    float: right;
+    margin-right: 50px;
+}
+
+#main_section{
+    display: inline-block;
+    background-color: #A9D18E;
+    width: 600px;
+    margin-left: 75px;
+    min-height: 495px;
+}
+
+footer {
+    background-color: #A9D18E;
+    height: 28px;
+    margin-top: 30px;
+    text-align: center;
+    font-family: Verdana;
+    font-weight: bold;
+    font-size: 1.1em;
+}
