@@ -2,28 +2,29 @@
 /// <reference path="controller.js" />
 
 (function () {
-    var mainModule = angular.module('mainModule', []);
+    var adsApp = angular.module('adsApp', ["ngRoute"]);
 
-    mainModule.config(['$routeProvider',
-  function ($routeProvider) {
-      $routeProvider.
-        when('/', {
-            templateUrl: 'views/home-view.html',
-            controller: 'PublicScreenView'
-        }).
-        when('/login', {
-            templateUrl: 'views/login-view.html',
-            controller: 'PublicScreenView'
-        }).
-        otherwise({
-            redirectTo: '/'
-        });
-  }]);
+    adsApp.config(['$routeProvider', function ($routeProvider) {
+        $routeProvider
+        .when('/home',
+        {
+            controller: 'PageController',
+            templateUrl: '/views/home-view.html'
+        })
+        .when('/login',
+        {
+            controller: 'PageController',
+            templateUrl: '/views/login-view.html'
+        })
+        .when('/register',
+        {
+            controller: 'PageController',
+            templateUrl: '/views/register-view.html'
+        })
+        .otherwise({redirectTo: '/home'});
+    }]);
 
-
-    function PublicScreenView($scope) {
-        $scope.asd = 'asdadad';
-    }
-
-    mainModule.controller('PublicScreenView', PublicScreenView);
+    adsApp.controller('PageController', ['$scope', function ($scope) {
+        
+    }]);
 }());

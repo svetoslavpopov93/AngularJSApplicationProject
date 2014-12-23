@@ -59,6 +59,7 @@
   <ItemGroup>
     <Content Include="index.html" />
     <Content Include="scripts\angular.js" />
+    <Content Include="scripts\angular-route.js" />
     <Content Include="scripts\app.js" />
     <Content Include="scripts\controllers.js" />
     <Content Include="styles\main.css" />
@@ -71,6 +72,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="scripts\angular-route.min.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
