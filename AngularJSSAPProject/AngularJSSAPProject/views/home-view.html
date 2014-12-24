@@ -1,9 +1,25 @@
-﻿<aside id="left_aside">To publish a new
-ad, please login.
+﻿<aside id="left_aside">
+    To publish a new
+    ad, please login.
     <a href="#/login">Login</a>
     <a href="#/register">Register</a>
 </aside>
-<section id="main_section">section</section>
+<section id="main_section" ng-controller="PageController">
+    <ul>
+        <li ng-repeat="ad in data.ads">
+            <h2 class="ad-title"><span class="ad-title-span">{{ad.title}}</span><span>{{ad.date | date:'dd-MMM-yyyy'}}</span></h2>
+            <div>
+                <img ng-src="{{ad.imageDataUrl}}" class="ad-image" />
+                <div class="ad-txt-section">
+                    <p class="ad_txt bg-white">{{ad.text}}</p>
+                    <p class="p-clear"><span>Name</span><span class="ad-inner-span bg-white">{{ad.ownerName}}</span></p>
+                    <p class="p-clear"><span>Email</span><span class="ad-inner-span bg-white">{{ad.ownerEmail}}</span></p>
+                    <p class="p-clear"><span>Phone</span><span class="ad-inner-span bg-white">{{ad.ownerPhone}}</span></p>
+                </div>
+            </div>
+        </li>
+    </ul>
+</section>
 <aside id="right_aside">
     <div>
         <h2>Categories</h2>

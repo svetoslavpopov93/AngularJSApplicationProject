@@ -1,6 +1,15 @@
 ﻿body, section, article, header, footer, div, span, p, ul, ol, li, table, td, th, tr, img, input, button, h1 {
     padding: 0;
     margin: 0;
+    font-size: 18px;
+}
+
+body{
+    font-family: Calibri;
+}
+
+ul{
+    list-style-type: none;
 }
 
 header{
@@ -35,6 +44,67 @@ aside{
     width: 600px;
     margin-left: 75px;
     min-height: 567px;
+}
+#main_section ul li h2 {
+    margin-left: 20px;
+    max-width: 580px;
+    max-height: 35px;
+}
+
+#main_section ul li h2 span{
+    font-size: 1.1em;
+}
+
+#main_section ul li h2 .ad-title-span{
+    width: 405px;
+    max-width: 405px;
+    max-height: 29px;
+    overflow: hidden;
+    display: inline-block;
+}
+
+#main_section ul li div .ad-image{
+    float: left;
+    width: 180px;
+    height: 250px;
+    margin-left: 20px;
+}
+
+.ad-txt-section{
+width: 350px;
+margin: 25px;
+margin-top: 0;
+    float: right;
+    display: inline-block;
+}
+
+#main_section ul li h2{
+    clear: both;
+}
+
+#main_section ul li div .ad_txt{
+    height:250px;
+    max-height: 250px;
+    word-break: break-all;
+    word-wrap: break-word;
+    margin-bottom: 15px;
+}
+
+.bg-white{
+    background-color:#C5E0B4;
+    padding: 5px;
+    clear: both;
+}
+
+.p-clear{
+    clear:both;
+    margin-top: 20px;
+}
+
+.ad-inner-span {
+    width: 285px;
+    display: inline-block;
+    float: right;
 }
 
 footer {
