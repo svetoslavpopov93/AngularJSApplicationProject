@@ -1,0 +1,6 @@
+TODO: 
+1. Implement please wait functionality
+2. login
+3. logout
+4. register
+5. fix header

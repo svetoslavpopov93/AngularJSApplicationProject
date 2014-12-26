@@ -1,5 +1,7 @@
 ﻿/// <reference path="angular.js" />
 /// <reference path="controller.js" />
+/// <reference path="jquery-2.1.3.min.js" />
+/// <reference path="service-requester.js" />
 
 (function () {
     var adsApp = angular.module('adsApp', ["ngRoute"]);
@@ -25,27 +27,11 @@
     }]);
 
     function displayAds($scope, $http) {
-        $http.get('http://localhost:1337/api/ads').
-    success(function (data, status, headers, config) {
-        $scope.data = data;
-        console.log(data);
-        console.log(status);
-        console.log(headers);
-        console.log(config);
-            // this callback will be called asynchronously
-            // when the response is available
-        }).
-    error(function (data, status, headers, config) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-        console.log(data);
-        console.log(status);
-        console.log(headers);
-        console.log(config);
-    });
+        $scope.data = serviceRequester.getAds($scope, $http);
     }
 
     adsApp.controller('PageController', ['$scope', '$http', function ($scope, $http) {
         $scope.displayAds = displayAds($scope, $http);
+        UserController($scope, $http);
     }]);
 }());
