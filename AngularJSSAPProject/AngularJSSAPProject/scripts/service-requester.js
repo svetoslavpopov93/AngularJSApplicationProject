@@ -13,35 +13,66 @@ var serviceRequester = (function () {
         });
     }
 
-    function login($scope, $http, un, pass) {
-        var dat = JSON.stringify({ username: un, password: pass });
+    //TODO: session 
+    function login() {
+        var un = $('#login-view-username').val();
+            var pass = $('#login-view-password').val();
+            var btnLogin = $('#login-view-btn');
+            var dt = JSON.stringify({ username: un, password: pass });
 
-        $http.post('http://localhost:1337/api/user/login', { "username": 'goshy', "password": '123' }).
-  success(function (data, status, headers, config) {
-      // this callback will be called asynchronously
-      // when the response is available
-  }).
-  error(function (data, status, headers, config) {
-      // called asynchronously if an error occurs
-      // or server returns response with an error status.
-  });
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:1337/api/user/Login',
+                contentType: "application/json",
+                data: dt,
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (e) {
+                    alert(e.error());
+                    console.log(e.error());
+                }
+            });
+        window.location.href = '/index.html#/home';
+    }
 
+    function register() {
+        var username = $("#register-view-username").val();
+        var password = $("#register-view-password").val();
+        var repeatPassword = $("#register-view-repeat-password").val();
+        var name = $("#register-view-name").val();
+        var email = $("#register-view-email").val();
+        var phone = $("#register-view-email").val();
+        var town = $("register-view-towns").val();
 
+        var dt = JSON.stringify({
+            username: username,
+            password: password,
+            confirmPassword: repeatPassword,
+            name: name,
+            email: email,
+            phone: phone,
+            townId: town
+        });
 
-        //$http.post('http://localhost:1337/api/user/login', dat)
-        //.success(function (data, status, headers, config) {
-        //    //$scope.data = data;
-        //    console.log("Login successful!");
-        //    console.log(data);
-        //}).
-        //error(function (data, status, headers, config) {
-        //    console.log("Login failed!");
-        //});
-        $window.location.href = '/home';
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost:1337/api/user/Login',
+            contentType: "application/json",
+            data: dt,
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (e) {
+                alert(e.error());
+                console.log(e.error());
+            }
+        });
     }
 
     return {
         getAds: getAllAds,
-        login: login
+        login: login,
+        register: register
     };
 }());

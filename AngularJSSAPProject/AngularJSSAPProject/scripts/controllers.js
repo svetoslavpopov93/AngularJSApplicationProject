@@ -3,22 +3,12 @@
 /// <reference path="service-requester.js" />
 
 var UserController = (function () {
-    function UserController($scope, $http) {
-        this.$scope = $scope;
-        this.$http = $http;
-        setLoginControls();
-    }
 
-    function setLoginControls() {
-        var username = $('#login-view-username');
-        var password = $('#login-view-password');
-        var btnLogin = $('#login-view-btn');
-        
+    function setLoginControls($scope, $http) {
         function log(un, pass) {
-            serviceRequester.login(this.$scope, this.$http, username.val(), password.val());
+            serviceRequester.login($scope, $http, username.val(), password.val());
         }
 
-        btnLogin.on("click", log);
     }
 
     function register() {
@@ -29,5 +19,7 @@ var UserController = (function () {
 
     }
 
-    return UserController;
+    return {
+        setLoginControls: setLoginControls
+    }
 }());

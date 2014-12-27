@@ -4,6 +4,20 @@
 /// <reference path="service-requester.js" />
 
 (function () {
+    function defineLoginBtn() {
+        var loginBtn = $("#login-btn");
+        loginBtn.on('click', function () {
+            serviceRequester.login();
+        });
+    }
+
+    function defineRegisterBtn() {
+        var registerBtn = $("#register_btn");
+        registerBtn.on('click', function () {
+            serviceRequester.register();
+        });
+    }
+
     var adsApp = angular.module('adsApp', ["ngRoute"]);
 
     adsApp.config(['$routeProvider', function ($routeProvider) {
@@ -25,13 +39,15 @@
         })
         .otherwise({ redirectTo: '/home' });
     }]);
-
+    
     function displayAds($scope, $http) {
         $scope.data = serviceRequester.getAds($scope, $http);
     }
 
     adsApp.controller('PageController', ['$scope', '$http', function ($scope, $http) {
-        $scope.displayAds = displayAds($scope, $http);
-        UserController($scope, $http);
+        //$scope.displayAds = displayAds($scope, $http);
+        //$scope.lgn = serviceRequester.login();var loginBtn = $("#login-btn");
+        defineLoginBtn();
+        defineRegisterBtn();
     }]);
 }());
