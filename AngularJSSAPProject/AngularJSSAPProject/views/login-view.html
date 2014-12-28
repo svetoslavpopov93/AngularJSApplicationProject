@@ -5,14 +5,13 @@
     <a href="#/register">Register</a>
 </aside>
 
-<section id="main_section" ng-controller="PageController">
+<section id="main_section" ng-controller="LoginController">
     <h2>Login</h2>
     <hr />
     <label for="login-view-username">Username:</label>
     <input type="text" id="login-view-username" />
     <label for="login-view-password">Password:</label>
     <input type="text" id="login-view-password" />
-    <button id="login-btn">login</button>
-    <a href="#" id="" class="login-view-btn">Login</a>
+    <a ng-click="login()">Login</a>
     <a href="#/register">Register here</a>
 </section>

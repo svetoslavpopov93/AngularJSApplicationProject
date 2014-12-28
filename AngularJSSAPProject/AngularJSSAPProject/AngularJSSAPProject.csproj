@@ -57,6 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="hqdefault %281%29.jpg" />
     <Content Include="index.html" />
     <Content Include="scripts\angular.js" />
     <Content Include="scripts\angular-route.js" />

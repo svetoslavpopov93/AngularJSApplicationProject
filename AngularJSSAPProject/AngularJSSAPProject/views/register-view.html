@@ -5,7 +5,7 @@
     <a href="#/register">Register</a>
 </aside>
 
-<section id="main_section">
+<section id="main_section" ng-controller="RegisterController">
     <label for="register-view-username">Username:</label>
     <input type="text" id="register-view-username" />
 
@@ -33,6 +33,6 @@
         <option value="5">Pleven</option>
     </select>
 
-    <a href="#" id="register_btn">Register</a>
+    <a ng-click="register()">Register</a>
     <a href="#/login">Login here</a>
 </section>

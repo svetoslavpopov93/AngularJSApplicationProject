@@ -4,18 +4,12 @@
 /// <reference path="service-requester.js" />
 
 (function () {
-    function defineLoginBtn() {
-        var loginBtn = $("#login-btn");
-        loginBtn.on('click', function () {
+    function loginUser() {
             serviceRequester.login();
-        });
     }
 
-    function defineRegisterBtn() {
-        var registerBtn = $("#register_btn");
-        registerBtn.on('click', function () {
+    function registerUser() {
             serviceRequester.register();
-        });
     }
 
     var adsApp = angular.module('adsApp', ["ngRoute"]);
@@ -45,9 +39,14 @@
     }
 
     adsApp.controller('PageController', ['$scope', '$http', function ($scope, $http) {
-        //$scope.displayAds = displayAds($scope, $http);
-        //$scope.lgn = serviceRequester.login();var loginBtn = $("#login-btn");
-        defineLoginBtn();
-        defineRegisterBtn();
+        $scope.displayAds = displayAds($scope, $http);
     }]);
+
+    adsApp.controller('RegisterController', ['$scope', '$http', function ($scope, $http) {
+        $scope.register = registerUser;
+    }]);
+
+    adsApp.controller('LoginController', ['$scope', '$http', function ($scope, $http) {
+        $scope.login = loginUser;
+    }])
 }());
