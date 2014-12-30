@@ -8,3 +8,4 @@ TODO:
 //7. remember session
 8. fix listing problem
 9. fix double loading
+10.refactor controller.js

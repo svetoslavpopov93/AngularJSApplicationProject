@@ -3,26 +3,24 @@
 
 var serviceRequester = (function () {
     function getAllAds($scope, $http) {
-
-        var headers;
         if (sessionStorage.getItem('access_token') != null) {
             headers = { Authorization: 'Bearer ' + sessionStorage.getItem('access_token') };
 
-            $.ajax({
-                type: 'GET',
-                url: 'http://localhost:1337/api/user/ads',
-                contentType: "application/json",
-                headers: headers,
-                success: function (data) {
-                    alert("done!");
-                    $scope.data = data;
-                    console.log(data);
-                },
-                error: function (e) {
-                    alert(e.error());
-                    console.log(e.error());
+
+            $http.get('http://localhost:1337/api/user/ads', {
+                headers: {
+                    Authorization: "Bearer " + sessionStorage.getItem("access_token")
                 }
-            });
+            }).
+                success(function (data, status, headers, config) {
+                    $scope.data = data;
+                    console.log("Ads loaded successfully!");
+                }).
+                error(function (data, status, headers, config) {
+                    console.log("Ad loading failed!");
+                });
+
+
         }
         else {
             $http.get('http://localhost:1337/api/ads').
