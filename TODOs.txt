@@ -9,3 +9,4 @@ TODO:
 8. fix listing problem
 9. fix double loading
 10.refactor controller.js
+!!!11. add header controller and its functionalities

@@ -3,7 +3,17 @@
 
 var serviceRequester = (function () {
     function getAllAds($scope, $http) {
-        if (sessionStorage.getItem('access_token') != null) {
+            $http.get('http://localhost:1337/api/ads').
+            success(function (data, status, headers, config) {
+                $scope.data = data;
+                console.log("Ads loaded successfully!");
+            }).
+            error(function (data, status, headers, config) {
+                console.log("Ad loading failed!");
+            });
+        }
+
+    function getUserAds($scope, $http) {
             headers = { Authorization: 'Bearer ' + sessionStorage.getItem('access_token') };
 
 
@@ -19,19 +29,6 @@ var serviceRequester = (function () {
                 error(function (data, status, headers, config) {
                     console.log("Ad loading failed!");
                 });
-
-
-        }
-        else {
-            $http.get('http://localhost:1337/api/ads').
-            success(function (data, status, headers, config) {
-                $scope.data = data;
-                console.log("Ads loaded successfully!");
-            }).
-            error(function (data, status, headers, config) {
-                console.log("Ad loading failed!");
-            });
-        }
     }
 
     function login() {
@@ -104,9 +101,9 @@ var serviceRequester = (function () {
 
     return {
         getAds: getAllAds,
+        getUserAds: getUserAds,
         login: login,
         register: register,
-        logout: logout
-        //saveData: saveData
+        logout: logout,
     };
 }());

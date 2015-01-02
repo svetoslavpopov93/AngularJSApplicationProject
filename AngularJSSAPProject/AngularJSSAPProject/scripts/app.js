@@ -16,30 +16,36 @@
 
     adsApp.config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-        .when('/home',
+        .when('/',
         {
             controller: 'PageController',
             templateUrl: '/views/home-view.html'
         })
         .when('/login',
         {
-            controller: 'PageController',
+            controller: 'LoginController',
             templateUrl: '/views/login-view.html'
         })
         .when('/register',
         {
-            controller: 'PageController',
+            controller: 'RegisterController',
             templateUrl: '/views/register-view.html'
         })
-        .otherwise({ redirectTo: '/home' });
+        .when('/user/ads',
+        {
+            controller: 'UserAdsView',
+            templateUrl: '/views/user-ads-view.html'
+        })
+        .otherwise({ redirectTo: '/' });
     }]);
     
-    function displayAds($scope, $http) {
-        $scope.data = serviceRequester.getAds($scope, $http);
-    }
+    adsApp.controller('HeaderController', ['$scope', function ($scope) {
+        alert("asdasd");
+        //$scope.logout = serviceRequester.logout();
+    }]);
 
     adsApp.controller('PageController', ['$scope', '$http', function ($scope, $http) {
-        $scope.displayAds = displayAds($scope, $http);
+        $scope.data = serviceRequester.getAds($scope, $http);
     }]);
 
     adsApp.controller('RegisterController', ['$scope', '$http', function ($scope, $http) {
@@ -48,5 +54,9 @@
 
     adsApp.controller('LoginController', ['$scope', '$http', function ($scope, $http) {
         $scope.login = loginUser;
-    }])
+    }]);
+
+    adsApp.controller('UserAdsView', ['$scope', '$http', function ($scope, $http) {
+        $scope.data = serviceRequester.getUserAds($scope, $http);
+    }]);
 }());

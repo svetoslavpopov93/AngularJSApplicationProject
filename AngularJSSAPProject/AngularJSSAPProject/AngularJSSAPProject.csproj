@@ -66,6 +66,7 @@
     <Content Include="scripts\jquery-2.1.3.min.js" />
     <Content Include="scripts\service-requester.js" />
     <Content Include="styles\main.css" />
+    <Content Include="views\user-ads-view.html" />
     <Content Include="views\home-view.html" />
     <Content Include="views\login-view.html" />
     <Content Include="views\register-view.html" />
