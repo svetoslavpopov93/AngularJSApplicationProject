@@ -28,7 +28,7 @@ aside{
     height: 200px;
 }
 
-#left_aside {
+.left_aside {
     float: left;
     margin-left: 50px;
 } 

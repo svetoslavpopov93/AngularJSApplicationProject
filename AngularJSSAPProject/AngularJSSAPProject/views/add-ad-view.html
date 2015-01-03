@@ -1,0 +1,55 @@
+﻿<header ng-controller="HeaderController">
+    <h1><a href="#/home"><span>Ads</span><span id="header-right"></span></a><a ng-click="logout()">logout</a></h1>
+</header>
+
+<aside class="left_aside">
+    <a href="#/">Home</a>
+    <a href="#/user/ads">My Ads</a>
+    <a href="#/user/ads/publish">Publish New Ad</a>
+    <a href="#/user/profile">Edit Profile</a>
+</aside>
+
+<section id="main_section">
+    <h2>Publish New Ad</h2>
+    <p>
+        <label for="title">Title:</label>
+        <input type="text" id="title" ng-model="adData.title" required />
+    </p>
+    <p>
+        <label for="text">Text:</label>
+        <textarea id="text" ng-model="adData.text" required></textarea>
+    </p>
+    <p>
+        <label for="image">Image:</label>
+        <input type="file" id="image"
+               onchange="angular.element(this).scope().fileSelected(this)" />
+        <div class="image-box">
+    <p>Image Preview</p>
+    </div>
+    </p>
+    <p>
+        <label for="category">Category:</label>
+        <select id="category" ng-model="adData.categoryId">
+            <option value="null">(None)</option>
+            <option value="1">Sofia</option>
+            <option value="2">Pleven</option>
+            <option value="3">Plovdiv</option>
+            <option value="4">Burgas</option>
+            <!--<option ng-repeat="c in categories" value="{{c.id}}">{{c.name}}</option>-->
+        </select>
+    </p>
+    <p>
+        <label for="town">Town:</label>
+        <select id="town" ng-model="adData.townId">
+            <option value="null">(None)</option>
+            <option value="1">Cars</option>
+            <option value="2">Estates</option>
+            <option value="3">Other</option>
+            <!--<option ng-repeat="town in towns" value="{{town.id}}">{{town.name}}</option>-->
+        </select>
+    </p>
+    <p>
+        <a ng-click="publishAd(adData)" class="button">Publish</a>
+        <a href="#/user/ads" class="button">Cancel</a>
+    <p>
+</section>

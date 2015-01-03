@@ -1,12 +1,11 @@
 TODO: 
 1. Implement "please wait" functionality
-//2. login
-//3. logout
-//4. register
 5. fix header
 6. implement serialization on input fields
-//7. remember session
-8. fix listing problem
 9. fix double loading
-10.refactor controller.js
 !!!11. add header controller and its functionalities
+12. fix register POST request from jQuery to Angular
+13. get towns and categories
+14. remove controller.js
+15. implement paging
+16. move logout button and name in the navigation panel

@@ -1,9 +1,20 @@
-﻿<aside id="left_aside">
+﻿<header ng-controller="HeaderController">
+    <h1><a href="#/home"><span>Ads</span><span id="header-right"></span></a><a ng-click="logout()">logout</a></h1>
+</header>
+<aside class="left_aside" ng-show="isLogged()">
     To publish a new
     ad, please login.
     <a href="#/login">Login</a>
     <a href="#/register">Register</a>
 </aside>
+
+<aside class="left_aside" ng-show="!isLogged()">
+    <a href="#/">Home</a>
+    <a href="#/user/ads">My Ads</a>
+    <a href="#/user/ads/publish">Publish New Ad</a>
+    <a href="#/user/profile">Edit Profile</a>
+</aside>
+
 <section id="main_section">
     <ul>
         <li ng-repeat="ad in data.ads">

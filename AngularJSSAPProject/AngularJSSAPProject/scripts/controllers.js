@@ -5,9 +5,9 @@
 var UserController = (function () {
 
     function setLoginControls($scope, $http) {
-        function log(un, pass) {
-            serviceRequester.login($scope, $http, username.val(), password.val());
-        }
+        //function log(un, pass) {
+        //    serviceRequester.login($scope, $http, username.val(), password.val());
+        //}
 
     }
 

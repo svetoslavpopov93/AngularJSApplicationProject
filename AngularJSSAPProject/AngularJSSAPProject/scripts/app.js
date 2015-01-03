@@ -4,14 +4,6 @@
 /// <reference path="service-requester.js" />
 
 (function () {
-    function loginUser() {
-            serviceRequester.login();
-    }
-
-    function registerUser() {
-            serviceRequester.register();
-    }
-
     var adsApp = angular.module('adsApp', ["ngRoute"]);
 
     adsApp.config(['$routeProvider', function ($routeProvider) {
@@ -36,27 +28,91 @@
             controller: 'UserAdsView',
             templateUrl: '/views/user-ads-view.html'
         })
+        .when('/user/ads/publish',
+        {
+            controller: 'UserPublishNewAdController',
+            templateUrl: '/views/add-ad-view.html'
+        })
+        .when('/user/profile', {
+            controller: 'EditUserController',
+            templateUrl: '/views/edit-user-view.html'
+        })
         .otherwise({ redirectTo: '/' });
     }]);
     
     adsApp.controller('HeaderController', ['$scope', function ($scope) {
-        alert("asdasd");
-        //$scope.logout = serviceRequester.logout();
+        $scope.logout = function () {
+            $scope.logout = serviceRequester.logout();    
+        }
     }]);
 
     adsApp.controller('PageController', ['$scope', '$http', function ($scope, $http) {
         $scope.data = serviceRequester.getAds($scope, $http);
+        $scope.isLogged = function () {
+            if (sessionStorage.length > 0) {
+                return false;
+            }
+
+            return true;
+        }
     }]);
 
     adsApp.controller('RegisterController', ['$scope', '$http', function ($scope, $http) {
-        $scope.register = registerUser;
+        $scope.register = function (username, password, repeat, name, mail, phone, town) {
+            var data = JSON.stringify({
+                username: username,
+                password: password,
+                confirmPassword: repeat,
+                name: name,
+                email: mail,
+                phone: phone,
+                townId: town
+            });
+
+            serviceRequester.register($scope, $http, data);
+        }
     }]);
 
-    adsApp.controller('LoginController', ['$scope', '$http', function ($scope, $http) {
-        $scope.login = loginUser;
+    adsApp.controller('LoginController', ['$scope', '$http', '$location', function ($scope, $http) {
+        $scope.login = function (username, password) {
+            var dt = JSON.stringify({ username: username, password: password });
+            serviceRequester.login(dt);
+        };
     }]);
 
+    //TODO: fix the rest of the things in the user ads view
     adsApp.controller('UserAdsView', ['$scope', '$http', function ($scope, $http) {
         $scope.data = serviceRequester.getUserAds($scope, $http);
+    }]);
+
+    adsApp.controller('UserPublishNewAdController',
+    function ($scope, $http, $rootScope, $location) {
+        $scope.adData = {townId: null, categoryId: null};
+        //$scope.categories = categoriesService.getCategories();
+        //$scope.towns = townsService.getTowns();
+
+        $scope.fileSelected = function(fileInputField) {
+            delete $scope.adData.imageDataUrl;
+            var file = fileInputField.files[0];
+            if (file.type.match(/image\/.*/)) {
+                var reader = new FileReader();
+                reader.onload = function() {
+                    $scope.adData.imageDataUrl = reader.result;
+                    $(".image-box").html("<img src='" + reader.result + "'>");
+                };
+                reader.readAsDataURL(file);
+            } else {
+                $(".image-box").html("<p>File type not supported!</p>");
+            }
+        };
+
+        $scope.publishAd = function(adData) {
+            serviceRequester.adAdd($scope, $http, adData);
+        };
+    });
+
+    adsApp.controller('EditUserController', ['$scope', '$http', function ($scope, $http) {
+        //TODO: implement edit user functionality
+
     }]);
 }());

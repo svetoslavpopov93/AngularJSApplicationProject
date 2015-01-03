@@ -3,7 +3,25 @@
 
 var serviceRequester = (function () {
     function getAllAds($scope, $http) {
-            $http.get('http://localhost:1337/api/ads').
+        $http.get('http://localhost:1337/api/ads').
+        success(function (data, status, headers, config) {
+            $scope.data = data;
+            console.log("Ads loaded successfully!");
+        }).
+        error(function (data, status, headers, config) {
+            console.log("Ad loading failed!");
+        });
+    }
+
+    function getUserAds($scope, $http) {
+        headers = { Authorization: 'Bearer ' + sessionStorage.getItem('access_token') };
+
+
+        $http.get('http://localhost:1337/api/user/ads', {
+            headers: {
+                Authorization: "Bearer " + sessionStorage.getItem("access_token")
+            }
+        }).
             success(function (data, status, headers, config) {
                 $scope.data = data;
                 console.log("Ads loaded successfully!");
@@ -11,32 +29,9 @@ var serviceRequester = (function () {
             error(function (data, status, headers, config) {
                 console.log("Ad loading failed!");
             });
-        }
-
-    function getUserAds($scope, $http) {
-            headers = { Authorization: 'Bearer ' + sessionStorage.getItem('access_token') };
-
-
-            $http.get('http://localhost:1337/api/user/ads', {
-                headers: {
-                    Authorization: "Bearer " + sessionStorage.getItem("access_token")
-                }
-            }).
-                success(function (data, status, headers, config) {
-                    $scope.data = data;
-                    console.log("Ads loaded successfully!");
-                }).
-                error(function (data, status, headers, config) {
-                    console.log("Ad loading failed!");
-                });
     }
 
-    function login() {
-        var un = $('#login-view-username').val();
-        var pass = $('#login-view-password').val();
-        var btnLogin = $('#login-view-btn');
-        var dt = JSON.stringify({ username: un, password: pass });
-
+    function login(dt) {
         $.ajax({
             type: 'POST',
             url: 'http://localhost:1337/api/user/Login',
@@ -45,53 +40,49 @@ var serviceRequester = (function () {
             success: function (data) {
                 saveData(data);
                 console.log(data);
+                 window.location.href = '/index.html#/home';
             },
             error: function (e) {
                 alert(e.error());
                 console.log(e.error());
             }
         });
-        // window.location.href = '/index.html#/home';
     }
 
-    function register() {
-        var username = $("#register-view-username").val();
-        var password = $("#register-view-password").val();
-        var repeatPassword = $("#register-view-repeat-password").val();
-        var name = $("#register-view-name").val();
-        var email = $("#register-view-email").val();
-        var phone = $("#register-view-phone").val();
-        var town = $("#register-view-towns").val();
-
-        var dt = JSON.stringify({
-            username: username,
-            password: password,
-            confirmPassword: repeatPassword,
-            name: name,
-            email: email,
-            phone: phone,
-            townId: town
-        });
-
-        $.ajax({
-            type: 'POST',
-            url: 'http://localhost:1337/api/user/register',
-            contentType: "application/json",
-            data: dt,
-            success: function (data) {
+    function register($scope, $http, data) {
+        $http.post('http://localhost:1337/api/user/register', data)
+            .success(function (data, status, headers, config) {
+                $scope.data = data;
                 saveData(data);
-                console.log(data);
-            },
-            error: function (e) {
-                alert(e.error());
-                console.log(e.error());
-            }
-        });
+                console.log("User registered successfully!");
+                window.location.href = '/index.html#/login';
+            })
+            .error(function (data, status, headers, config) {
+                console.log("User register failed!");
+            });
     }
 
     function logout() {
         sessionStorage.removeItem("access_token");
         sessionStorage.removeItem("username");
+        window.location.href = '/index.html#/home';
+    }
+
+    function adAdd($scope, $http, data) {
+        $http.post('http://localhost:1337/api/user/ads',
+            data, {
+            headers: {
+                Authorization: "Bearer " + sessionStorage.getItem("access_token")
+            }
+        })
+            .success(function (data, status, headers, config) {
+                $scope.data = data;
+                console.log("Ad published successfully!");
+                window.location.href = '/index.html#/user/ads';
+            })
+            .error(function (data, status, headers, config) {
+                console.log("Ad publishing failed!");
+            });
     }
 
     function saveData(data) {
@@ -105,5 +96,6 @@ var serviceRequester = (function () {
         login: login,
         register: register,
         logout: logout,
+        adAdd: adAdd
     };
 }());
