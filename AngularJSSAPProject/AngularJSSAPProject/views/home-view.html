@@ -30,16 +30,32 @@
             </div>
         </li>
     </ul>
+
+    <!--TODO: REMOVE INLINE CSS FROM HERE!!!!-->
+    <div style="background-color:red">
+        <p>{{numbs.nums[0]}}</p>
+        <ul>
+            <li ng-repeat="num in numbs.nums">{{num.n}}</li>
+        </ul>
+    </div>
 </section>
 <aside id="right_aside">
     <div>
         <h2>Categories</h2>
         <hr />
-        <ul></ul>
+        <ul>
+            <li ng-repeat="cat in categories">
+                <p>{{cat.name}}</p>
+            </li>
+        </ul>
     </div>
     <div>
         <h2>Towns</h2>
         <hr />
-        <ul></ul>
+        <ul>
+            <li ng-repeat="town in towns">
+                <p>{{town.name}}</p>
+            </li>
+        </ul>
     </div>
 </aside>

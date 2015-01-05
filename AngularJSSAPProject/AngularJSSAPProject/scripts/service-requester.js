@@ -2,6 +2,8 @@
 /// <reference path="jquery-2.1.3.min.js" />
 
 var serviceRequester = (function () {
+    var defaultPageSize = 5;
+
     function getAllAds($scope, $http) {
         $http.get('http://localhost:1337/api/ads').
         success(function (data, status, headers, config) {
@@ -11,6 +13,18 @@ var serviceRequester = (function () {
         error(function (data, status, headers, config) {
             console.log("Ad loading failed!");
         });
+    }
+
+    function getAdsByPageAndNumber($scope, $http, startPage) {
+        $http.get('http://localhost:1337/api/ads?pagesize=' + defaultPageSize + '&startpage=' + startPage)
+            .success(function (data, status, headers, config) {
+                $scope.data = data;
+                window.numPages = data.numPages;
+                console.log("Ads loaded successfully!");
+            }).
+            error(function (data, status, headers, config) {
+                console.log("Ad loading failed!");
+            });
     }
 
     function getUserAds($scope, $http) {
@@ -31,22 +45,17 @@ var serviceRequester = (function () {
             });
     }
 
-    function login(dt) {
-        $.ajax({
-            type: 'POST',
-            url: 'http://localhost:1337/api/user/Login',
-            contentType: "application/json",
-            data: dt,
-            success: function (data) {
+    function login($scope, $http, data) {
+        $http.post('http://localhost:1337/api/user/login', data)
+            .success(function (data, status, headers, config) {
+                $scope.data = data;
                 saveData(data);
-                console.log(data);
-                 window.location.href = '/index.html#/home';
-            },
-            error: function (e) {
-                alert(e.error());
-                console.log(e.error());
-            }
-        });
+                console.log("User logged successfully!");
+                window.location.href = '/index.html#/home';
+            })
+            .error(function (data, status, headers, config) {
+                console.log("User login failed!");
+            });
     }
 
     function register($scope, $http, data) {
@@ -71,10 +80,10 @@ var serviceRequester = (function () {
     function adAdd($scope, $http, data) {
         $http.post('http://localhost:1337/api/user/ads',
             data, {
-            headers: {
-                Authorization: "Bearer " + sessionStorage.getItem("access_token")
-            }
-        })
+                headers: {
+                    Authorization: "Bearer " + sessionStorage.getItem("access_token")
+                }
+            })
             .success(function (data, status, headers, config) {
                 $scope.data = data;
                 console.log("Ad published successfully!");
@@ -83,6 +92,29 @@ var serviceRequester = (function () {
             .error(function (data, status, headers, config) {
                 console.log("Ad publishing failed!");
             });
+    }
+
+    function getTowns($scope, $http) {
+        $http.get('http://localhost:1337/api/towns').
+                success(function (data, status, headers, config) {
+                    $scope.towns = data;
+                    console.log("Towns loaded successfully!");
+                }).
+                error(function (data, status, headers, config) {
+                    console.log("Towns loading failed!");
+                });
+    }
+
+    function getCategories($scope, $http) {
+        $http.get('http://localhost:1337/api/categories').
+                success(function (data, status, headers, config) {
+                    $scope.categories = data;
+                    console.log("Categories loaded successfully!");
+                    console.log(data[0]);
+                }).
+                error(function (data, status, headers, config) {
+                    console.log("Categories loading failed!");
+                });
     }
 
     function saveData(data) {
@@ -96,6 +128,9 @@ var serviceRequester = (function () {
         login: login,
         register: register,
         logout: logout,
-        adAdd: adAdd
+        adAdd: adAdd,
+        getTowns: getTowns,
+        getCategories: getCategories,
+        getAdsByPageAndNumber: getAdsByPageAndNumber
     };
 }());

@@ -30,11 +30,8 @@
 
     <label for="register-view-towns">Town:</label>
     <select id="register-view-towns" ng-model="town">
-        <option value="1">Sofia</option>
-        <option value="2">Plovdiv</option>
-        <option value="3">Varna</option>
-        <option value="4">Burgas</option>
-        <option value="5">Pleven</option>
+        <option value="null">None</option>
+        <option ng-repeat="town in towns" value="{{town.id}}">{{town.name}}</option>
     </select>
 
     <a ng-click="register(username, password, repeat, name, mail, phone, town)">Register</a>

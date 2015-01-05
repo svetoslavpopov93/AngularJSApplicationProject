@@ -25,17 +25,24 @@ aside{
     display: inline-block;
     background-color: #A9D18E;
     width: 260px;
-    height: 200px;
 }
 
 .left_aside {
     float: left;
     margin-left: 50px;
+    height: 200px;
 } 
 
 #right_aside{
+    display: inline-block;
     float: right;
     margin-right: 50px;
+    min-height: 230px;
+    white-space:nowrap;
+}
+
+#right_aside ul{
+    display: inline-block;
 }
 
 #main_section{

@@ -30,22 +30,15 @@
     <p>
         <label for="category">Category:</label>
         <select id="category" ng-model="adData.categoryId">
-            <option value="null">(None)</option>
-            <option value="1">Sofia</option>
-            <option value="2">Pleven</option>
-            <option value="3">Plovdiv</option>
-            <option value="4">Burgas</option>
-            <!--<option ng-repeat="c in categories" value="{{c.id}}">{{c.name}}</option>-->
+            <option value="null">None</option>
+            <option ng-repeat="c in categories" value="{{c.id}}">{{c.name}}</option>
         </select>
     </p>
     <p>
         <label for="town">Town:</label>
         <select id="town" ng-model="adData.townId">
-            <option value="null">(None)</option>
-            <option value="1">Cars</option>
-            <option value="2">Estates</option>
-            <option value="3">Other</option>
-            <!--<option ng-repeat="town in towns" value="{{town.id}}">{{town.name}}</option>-->
+            <option value="null">None</option>
+            <option ng-repeat="town in towns" value="{{town.id}}">{{town.name}}</option>
         </select>
     </p>
     <p>

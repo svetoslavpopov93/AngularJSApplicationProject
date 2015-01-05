@@ -39,15 +39,18 @@
         })
         .otherwise({ redirectTo: '/' });
     }]);
-    
+
     adsApp.controller('HeaderController', ['$scope', function ($scope) {
         $scope.logout = function () {
-            $scope.logout = serviceRequester.logout();    
+            $scope.logout = serviceRequester.logout();
         }
     }]);
 
     adsApp.controller('PageController', ['$scope', '$http', function ($scope, $http) {
-        $scope.data = serviceRequester.getAds($scope, $http);
+        var pagesCount = 0;
+
+        $scope.data = serviceRequester.getAdsByPageAndNumber($scope, $http, 1);
+
         $scope.isLogged = function () {
             if (sessionStorage.length > 0) {
                 return false;
@@ -55,9 +58,31 @@
 
             return true;
         }
+
+        //TODO: FIX PAGING
+        $scope.numbs = function () {
+            var numbers = { nums: [] };
+
+            for (var i = 0; i < window.numPages; i++) {
+                var a = { n: (i + 1) };
+                numbers.nums.push(a);
+            }
+
+            $scope.numbs = numbers;
+
+        }
+        
+        $scope.getPage = function (num) {
+            serviceRequester.getAdsByPageAndNumber($scope, $http, 1);
+        }
+
+        serviceRequester.getCategories($scope, $http);
+
+        serviceRequester.getTowns($scope, $http);
     }]);
 
     adsApp.controller('RegisterController', ['$scope', '$http', function ($scope, $http) {
+        serviceRequester.getTowns($scope, $http);
         $scope.register = function (username, password, repeat, name, mail, phone, town) {
             var data = JSON.stringify({
                 username: username,
@@ -76,27 +101,24 @@
     adsApp.controller('LoginController', ['$scope', '$http', '$location', function ($scope, $http) {
         $scope.login = function (username, password) {
             var dt = JSON.stringify({ username: username, password: password });
-            serviceRequester.login(dt);
+            serviceRequester.login($scope, $http, dt);
         };
     }]);
 
-    //TODO: fix the rest of the things in the user ads view
     adsApp.controller('UserAdsView', ['$scope', '$http', function ($scope, $http) {
         $scope.data = serviceRequester.getUserAds($scope, $http);
     }]);
 
-    adsApp.controller('UserPublishNewAdController',
-    function ($scope, $http, $rootScope, $location) {
-        $scope.adData = {townId: null, categoryId: null};
-        //$scope.categories = categoriesService.getCategories();
-        //$scope.towns = townsService.getTowns();
-
-        $scope.fileSelected = function(fileInputField) {
+    adsApp.controller('UserPublishNewAdController', function ($scope, $http, $rootScope, $location) {
+        serviceRequester.getCategories($scope, $http);
+        serviceRequester.getTowns($scope, $http);
+        $scope.adData = { townId: null, categoryId: null };
+        $scope.fileSelected = function (fileInputField) {
             delete $scope.adData.imageDataUrl;
             var file = fileInputField.files[0];
             if (file.type.match(/image\/.*/)) {
                 var reader = new FileReader();
-                reader.onload = function() {
+                reader.onload = function () {
                     $scope.adData.imageDataUrl = reader.result;
                     $(".image-box").html("<img src='" + reader.result + "'>");
                 };
@@ -106,7 +128,7 @@
             }
         };
 
-        $scope.publishAd = function(adData) {
+        $scope.publishAd = function (adData) {
             serviceRequester.adAdd($scope, $http, adData);
         };
     });
