@@ -120,6 +120,7 @@
     }]);
 
     adsApp.controller('UserAdsView', ['$scope', '$http', function ($scope, $http) {
+        serviceRequester.getUserProfile($scope, $http);
         $scope.data = serviceRequester.getUserAds($scope, $http);
     }]);
 

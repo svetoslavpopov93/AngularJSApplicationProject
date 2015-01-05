@@ -83,6 +83,23 @@ var serviceRequester = (function () {
             });
     }
 
+    function getUserProfile($scope, $http) {
+        $http.get('http://localhost:1337/api/user/profile',
+            {
+                headers: {
+                    Authorization: "Bearer " + sessionStorage.getItem("access_token")
+                }
+            })
+            .success(function (data, status, headers, config) {
+                $scope.user = data;
+                console.log(data);
+                console.log("User profile info recieved successfully!");
+            })
+            .error(function (data, status, headers, config) {
+                console.log("Retrieving user profile info failed!");
+            });
+    }
+
     function login($scope, $http, data) {
         $http.post('http://localhost:1337/api/user/login', data)
             .success(function (data, status, headers, config) {
@@ -200,6 +217,7 @@ var serviceRequester = (function () {
         getAdsByPageAndNumber: getAdsByPageAndNumber,
         getAdsWithCategoryFilter: getAdsWithCategoryFilter,
         getAdsWithTownFilter: getAdsWithTownFilter,
-        getAdsByPageAndFilers: getAdsByPageAndFilers
+        getAdsByPageAndFilers: getAdsByPageAndFilers,
+        getUserProfile: getUserProfile
     };
 }());
