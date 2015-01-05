@@ -116,7 +116,7 @@ var serviceRequester = (function () {
     function getCategories($scope, $http) {
         $http.get('http://localhost:1337/api/categories').
                 success(function (data, status, headers, config) {
-                    $scope.categories = data;
+                    $scope.categories = data
                     console.log("Categories loaded successfully!");
                     console.log(data[0]);
                 }).

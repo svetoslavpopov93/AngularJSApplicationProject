@@ -45,10 +45,11 @@
     <div>
         <h2>Categories</h2>
         <hr />
+        <a ng-click="clearFilters()">Clear Filters</a>
+        <hr />
         <ul>
-            <li>asdasdasdakl;dkadjkl;ajdl;kaj;dkljal;skdja;kljdal;kjd;klajsd;klaj;sdkljakl;djal;sdkjal;sdkjl;k</li>
             <li ng-repeat="cat in categories">
-                <p>{{cat.name}}</p>
+                <a ng-click="applyCategoryFilter(cat.id)">{{cat.name}}</a>
             </li>
         </ul>
     </div>
@@ -57,7 +58,7 @@
         <hr />
         <ul>
             <li ng-repeat="town in towns">
-                <p>{{town.name}}</p>
+                <a ng-click="applyTownFilter(town.id)">{{town.name}}</a>
             </li>
         </ul>
     </div>
