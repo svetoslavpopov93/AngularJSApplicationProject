@@ -2,7 +2,7 @@
 /// <reference path="jquery-2.1.3.min.js" />
 
 var serviceRequester = (function () {
-    var defaultPageSize = 5;
+    var defaultPageSize = 1;
 
     function getAllAds($scope, $http) {
         $http.get('http://localhost:1337/api/ads').
@@ -17,6 +17,36 @@ var serviceRequester = (function () {
 
     function getAdsByPageAndNumber($scope, $http, startPage) {
         $http.get('http://localhost:1337/api/ads?pagesize=' + defaultPageSize + '&startpage=' + startPage)
+            .success(function (data, status, headers, config) {
+                $scope.data = data;
+                var pageButtonsData = [];
+
+                for (var i = 1; i < data.numPages + 1; i++) {
+                    pageButtonsData.push({
+                        value: i
+                    });
+                }
+
+                $scope.pageButtonsData = pageButtonsData;
+                console.log("Ads loaded successfully!");
+            }).
+            error(function (data, status, headers, config) {
+                console.log("Ad loading failed!");
+            });
+    }
+
+    function getAdsByPageAndFilers($scope, $http, startPage, categoryId, townId) {
+        var categoryStr = "";
+        var townStr = "";
+        if (categoryId != undefined) {
+            categoryStr = "&categoryId=" + categoryId;
+        }
+
+        if (townId != undefined) {
+            townStr = "&townId=" + townId;
+        }
+
+        $http.get('http://localhost:1337/api/ads?pagesize=' + defaultPageSize + '&startpage=' + startPage + categoryStr + townStr)
             .success(function (data, status, headers, config) {
                 $scope.data = data;
                 var pageButtonsData = [];
@@ -125,6 +155,34 @@ var serviceRequester = (function () {
                 });
     }
 
+    function getAdsWithCategoryFilter($scope, $http) {
+        var categoryId = window.categoryId;
+
+        $http.get('http://localhost:1337/api/ads?categoryid=' + categoryId + '&pagesize=5&startpage=1')
+                    .success(function (data, status, headers, config) {
+                        $scope.data = data;
+                        console.log(data);
+                        console.log("Ads with category filters loaded successfully!");
+                    })
+                    .error(function (data, status, headers, config) {
+                        console.log("Ad with category filters loading failed!");
+                    });
+    }
+
+    function getAdsWithTownFilter($scope, $http) {
+        var townId = window.townId;
+
+        $http.get('http://localhost:1337/api/ads?townId=' + townId + '&pagesize=5&startpage=1')
+                    .success(function (data, status, headers, config) {
+                        $scope.data = data;
+                        console.log(data);
+                        console.log("Ads with category filters loaded successfully!");
+                    })
+                    .error(function (data, status, headers, config) {
+                        console.log("Ad with category filters loading failed!");
+                    });
+    }
+
     function saveData(data) {
         sessionStorage.setItem('username', data.username);
         sessionStorage.setItem('access_token', data.access_token);
@@ -139,6 +197,9 @@ var serviceRequester = (function () {
         adAdd: adAdd,
         getTowns: getTowns,
         getCategories: getCategories,
-        getAdsByPageAndNumber: getAdsByPageAndNumber
+        getAdsByPageAndNumber: getAdsByPageAndNumber,
+        getAdsWithCategoryFilter: getAdsWithCategoryFilter,
+        getAdsWithTownFilter: getAdsWithTownFilter,
+        getAdsByPageAndFilers: getAdsByPageAndFilers
     };
 }());

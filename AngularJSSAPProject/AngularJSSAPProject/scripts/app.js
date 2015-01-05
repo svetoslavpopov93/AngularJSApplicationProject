@@ -51,6 +51,9 @@
 
         $scope.data = serviceRequester.getAdsByPageAndNumber($scope, $http, 1);
 
+        serviceRequester.getCategories($scope, $http);
+        serviceRequester.getTowns($scope, $http);
+
         $scope.isLogged = function () {
             if (sessionStorage.length > 0) {
                 return false;
@@ -60,12 +63,11 @@
         }
 
         $scope.getPage = function (num) {
-            serviceRequester.getAdsByPageAndNumber($scope, $http, num);
+            var categoryId = window.categoryId;
+            var townId = window.townId;
+            serviceRequester.getAdsByPageAndFilers($scope, $http, num, categoryId, townId);
         }
 
-        serviceRequester.getCategories($scope, $http);
-        serviceRequester.getTowns($scope, $http);
-        //getAdsWithFilter(undefined, 1);
         $scope.applyCategoryFilter = function (id) {
             window.categoryId = id;
 
@@ -88,42 +90,8 @@
             var categoryId = window.categoryId;
             var townId = window.townId;
 
-            if (categoryId == undefined) {
-                $http.get('http://localhost:1337/api/ads?townId=' + townId + '&pagesize=5&startpage=1')
-                    .success(function (data, status, headers, config) {
-                        $scope.data = data;
-                        console.log(data);
-                        console.log("Ads with category filters loaded successfully!");
-                    })
-                    .error(function (data, status, headers, config) {
-                        console.log("Ad with category filters loading failed!");
-                    });
-            }
-            else if (townId == undefined) {
-                $http.get('http://localhost:1337/api/ads?categoryid=' + categoryId + '&pagesize=5&startpage=1')
-                    .success(function (data, status, headers, config) {
-                        $scope.data = data;
-                        console.log(data);
-                        console.log("Ads with category filters loaded successfully!");
-                    })
-                    .error(function (data, status, headers, config) {
-                        console.log("Ad with category filters loading failed!");
-                    });
-            }
-            else if (categoryId == undefined & townId == undefined) {
-                serviceRequester.getAdsByPageAndNumber($scope, $http, 1);
-            }
-            else {
-                $http.get('http://localhost:1337/api/ads?categoryid=' + categoryId + '&townId=' + townId + 'pagesize=5&startpage=1')
-                    .success(function (data, status, headers, config) {
-                        $scope.data = data;
-                        console.log(data);
-                        console.log("Ads with both filters loaded successfully!");
-                    })
-                    .error(function (data, status, headers, config) {
-                        console.log("Ad with both filters loading failed!");
-                    });
-            }
+            serviceRequester.getAdsByPageAndFilers($scope, $http, 1, categoryId, townId);;
+
         }
     }]);
 
