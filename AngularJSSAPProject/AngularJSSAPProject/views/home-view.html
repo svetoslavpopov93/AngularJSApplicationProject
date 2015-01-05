@@ -16,26 +16,28 @@
 </aside>
 
 <section id="main_section">
-    <ul>
-        <li ng-repeat="ad in data.ads">
-            <h2 class="ad-title"><span class="ad-title-span">{{ad.title}}</span><span>{{ad.date | date:'dd-MMM-yyyy'}}</span></h2>
-            <div>
-                <img src="http://www.goodtile.co.kr/_skin/basic/images/icon_no_images.jpg" ng-src="{{ad.imageDataUrl}}" class="ad-image" />
-                <div class="ad-txt-section">
-                    <p class="ad_txt bg-white">{{ad.text}}</p>
-                    <p class="p-clear"><span>Name</span><span class="ad-inner-span bg-white">{{ad.ownerName}}</span></p>
-                    <p class="p-clear"><span>Email</span><span class="ad-inner-span bg-white">{{ad.ownerEmail}}</span></p>
-                    <p class="p-clear"><span>Phone</span><span class="ad-inner-span bg-white">{{ad.ownerPhone}}</span></p>
-                </div>
-            </div>
-        </li>
-    </ul>
-
-    <!--TODO: REMOVE INLINE CSS FROM HERE!!!!-->
-    <div style="background-color:red">
-        <p>{{numbs.nums[0]}}</p>
+    <div>
         <ul>
-            <li ng-repeat="num in numbs.nums">{{num.n}}</li>
+            <li ng-repeat="ad in data.ads">
+                <h2 class="ad-title"><span class="ad-title-span">{{ad.title}}</span><span>{{ad.date | date:'dd-MMM-yyyy'}}</span></h2>
+                <div>
+                    <img src="http://www.goodtile.co.kr/_skin/basic/images/icon_no_images.jpg" ng-src="{{ad.imageDataUrl}}" class="ad-image" />
+                    <div class="ad-txt-section">
+                        <p class="ad_txt bg-white">{{ad.text}}</p>
+                        <p class="p-clear"><span>Name</span><span class="ad-inner-span bg-white">{{ad.ownerName}}</span></p>
+                        <p class="p-clear"><span>Email</span><span class="ad-inner-span bg-white">{{ad.ownerEmail}}</span></p>
+                        <p class="p-clear"><span>Phone</span><span class="ad-inner-span bg-white">{{ad.ownerPhone}}</span></p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div id="page-navigation">
+        <ul>
+            <li ng-repeat="btn in pageButtonsData">
+                <a ng-click="getPage(btn.value)">{{btn.value}}</a>
+            </li>
         </ul>
     </div>
 </section>
@@ -44,6 +46,7 @@
         <h2>Categories</h2>
         <hr />
         <ul>
+            <li>asdasdasdakl;dkadjkl;ajdl;kaj;dkljal;skdja;kljdal;kjd;klajsd;klaj;sdkljakl;djal;sdkjal;sdkjl;k</li>
             <li ng-repeat="cat in categories">
                 <p>{{cat.name}}</p>
             </li>

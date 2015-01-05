@@ -45,12 +45,17 @@ aside{
     display: inline-block;
 }
 
+#right_aside ul li {
+    max-width: 240px;
+    overflow: hidden;
+}
+
 #main_section{
     display: inline-block;
     background-color: #A9D18E;
     width: 600px;
     margin-left: 75px;
-    min-height: 567px;
+    min-height: 100%;
 }
 #main_section ul li h2 {
     margin-left: 20px;
@@ -114,7 +119,21 @@ margin-top: 0;
     float: right;
 }
 
+#page-navigation{
+    clear: both;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+#page-navigation ul li{
+    display: inline-block;
+    overflow: hidden;
+    width: 20px;
+}
+
 footer {
+    clear: both;
     background-color: #A9D18E;
     height: 28px;
     margin-top: 30px;

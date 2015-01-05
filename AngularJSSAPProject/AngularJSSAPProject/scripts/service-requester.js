@@ -19,7 +19,15 @@ var serviceRequester = (function () {
         $http.get('http://localhost:1337/api/ads?pagesize=' + defaultPageSize + '&startpage=' + startPage)
             .success(function (data, status, headers, config) {
                 $scope.data = data;
-                window.numPages = data.numPages;
+                var pageButtonsData = [];
+
+                for (var i = 1; i < data.numPages + 1; i++) {
+                    pageButtonsData.push({
+                        value: i
+                    });
+                }
+
+                $scope.pageButtonsData = pageButtonsData;
                 console.log("Ads loaded successfully!");
             }).
             error(function (data, status, headers, config) {

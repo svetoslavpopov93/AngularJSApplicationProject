@@ -3,9 +3,6 @@ TODO:
 5. fix header
 6. implement serialization on input fields
 9. fix double loading
-!!!11. add header controller and its functionalities
-12. fix register POST request from jQuery to Angular
-13. get towns and categories
+13. make filtering with towns and categories
 14. remove controller.js
-15. implement paging
 16. move logout button and name in the navigation panel

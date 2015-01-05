@@ -59,21 +59,21 @@
             return true;
         }
 
-        //TODO: FIX PAGING
-        $scope.numbs = function () {
-            var numbers = { nums: [] };
+        ////TODO: FIX PAGING
+        //$scope.numbs = function () {
+        //    var numbers = { nums: [] };
 
-            for (var i = 0; i < window.numPages; i++) {
-                var a = { n: (i + 1) };
-                numbers.nums.push(a);
-            }
+        //    for (var i = 0; i < window.numPages; i++) {
+        //        var a = { n: (i + 1) };
+        //        numbers.nums.push(a);
+        //    }
 
-            $scope.numbs = numbers;
+        //    $scope.numbs = numbers;
 
-        }
+        //}
         
         $scope.getPage = function (num) {
-            serviceRequester.getAdsByPageAndNumber($scope, $http, 1);
+            serviceRequester.getAdsByPageAndNumber($scope, $http, num);
         }
 
         serviceRequester.getCategories($scope, $http);
