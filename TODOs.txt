@@ -6,4 +6,4 @@ TODO:
 14. remove controller.js
 16. move logout button and name in the navigation panel
 17. fix mouse cursor on the buttons
-//http://localhost:1337/api/ads?categoryid=2&pagesize=5&startpage=1
+18. ad state modifying functionality

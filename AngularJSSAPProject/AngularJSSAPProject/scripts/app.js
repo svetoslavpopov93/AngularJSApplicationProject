@@ -53,6 +53,7 @@
 
         serviceRequester.getCategories($scope, $http);
         serviceRequester.getTowns($scope, $http);
+        serviceRequester.getUserProfile($scope, $http);
 
         $scope.isLogged = function () {
             if (sessionStorage.length > 0) {
@@ -84,6 +85,10 @@
             window.categoryId = undefined;
             window.townId = undefined;
             serviceRequester.getAdsByPageAndNumber($scope, $http, 1);
+        }
+        
+        $scope.logout = function () {
+            $scope.logout = serviceRequester.logout();
         }
 
         function getAdsWithFilter() {
@@ -121,12 +126,30 @@
 
     adsApp.controller('UserAdsView', ['$scope', '$http', function ($scope, $http) {
         serviceRequester.getUserProfile($scope, $http);
+        serviceRequester.getUserProfile($scope, $http);
         $scope.data = serviceRequester.getUserAds($scope, $http);
+        $scope.logout = function () {
+            $scope.logout = serviceRequester.logout();
+        }
+
+///////////////////////unfinished
+        $scope.edit = function (title, text, changeimage, ImageDataURL, categoryid, townid) {
+            var data = JSON.stringify({
+                title: title,
+                text: text,
+                changeimage: changeimage,
+                ImageDataURL: ImageDataURL,
+                categoryid: categoryid,
+                townid: townid
+            });
+            serviceRequester.editAd($scope, $http, data, 1);
+        }
     }]);
 
     adsApp.controller('UserPublishNewAdController', function ($scope, $http, $rootScope, $location) {
         serviceRequester.getCategories($scope, $http);
         serviceRequester.getTowns($scope, $http);
+        serviceRequester.getUserProfile($scope, $http);
         $scope.adData = { townId: null, categoryId: null };
         $scope.fileSelected = function (fileInputField) {
             delete $scope.adData.imageDataUrl;
@@ -146,10 +169,18 @@
         $scope.publishAd = function (adData) {
             serviceRequester.adAdd($scope, $http, adData);
         };
+
+        $scope.logout = function () {
+            $scope.logout = serviceRequester.logout();
+        }
     });
 
     adsApp.controller('EditUserController', ['$scope', '$http', function ($scope, $http) {
         //TODO: implement edit user functionality
+        serviceRequester.getUserProfile($scope, $http);
+        $scope.logout = function () {
+            $scope.logout = serviceRequester.logout();
+        }
 
     }]);
 }());

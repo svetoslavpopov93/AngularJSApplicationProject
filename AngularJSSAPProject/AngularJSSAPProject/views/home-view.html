@@ -1,7 +1,4 @@
-﻿<header ng-controller="HeaderController">
-    <h1><a href="#/home"><span>Ads</span><span id="header-right"></span></a><a ng-click="logout()">logout</a></h1>
-</header>
-<aside class="left_aside" ng-show="isLogged()">
+﻿<aside class="left_aside" ng-show="isLogged()">
     To publish a new
     ad, please login.
     <a href="#/login">Login</a>
@@ -9,10 +6,12 @@
 </aside>
 
 <aside class="left_aside" ng-show="!isLogged()">
+    <h4>{{user.name}}</h4>
     <a href="#/">Home</a>
     <a href="#/user/ads">My Ads</a>
     <a href="#/user/ads/publish">Publish New Ad</a>
     <a href="#/user/profile">Edit Profile</a>
+    <a ng-click="logout()">logout</a>
 </aside>
 
 <section id="main_section">
@@ -43,9 +42,9 @@
 </section>
 <aside id="right_aside">
     <div>
-        <h2>Categories</h2>
-        <hr />
         <a ng-click="clearFilters()">Clear Filters</a>
+        <hr />
+        <h2>Categories</h2>
         <hr />
         <ul>
             <li ng-repeat="cat in categories">

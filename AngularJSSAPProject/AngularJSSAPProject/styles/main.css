@@ -33,6 +33,10 @@ aside{
     height: 200px;
 } 
 
+.left_aside > a {
+    display: block;
+}
+
 #right_aside{
     display: inline-block;
     float: right;

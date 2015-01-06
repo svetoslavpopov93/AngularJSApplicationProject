@@ -2,7 +2,7 @@
 /// <reference path="jquery-2.1.3.min.js" />
 
 var serviceRequester = (function () {
-    var defaultPageSize = 1;
+    var defaultPageSize = 4;
 
     function getAllAds($scope, $http) {
         $http.get('http://localhost:1337/api/ads').
@@ -100,9 +100,27 @@ var serviceRequester = (function () {
             });
     }
 
+    function editAd($scope, $http, data, id) {
+        $http.get('http://localhost:1337/api/user/ads/' + id,
+            data,
+            {
+                headers: {
+                    Authorization: "Bearer " + sessionStorage.getItem("access_token")
+                }
+            })
+            .success(function (data, status, headers, config) {
+                console.log(data);
+                console.log(status);
+            })
+            .error(function (data, status, headers, config) {
+                console.log("ESDASD");
+            });
+    }
+
     function login($scope, $http, data) {
         $http.post('http://localhost:1337/api/user/login', data)
             .success(function (data, status, headers, config) {
+                alertify.success("Login successful! Welcome, " + data.username + "!");
                 $scope.data = data;
                 saveData(data);
                 console.log("User logged successfully!");
@@ -110,23 +128,27 @@ var serviceRequester = (function () {
             })
             .error(function (data, status, headers, config) {
                 console.log("User login failed!");
+                alertify.error("Incorrect username or password!");
             });
     }
 
     function register($scope, $http, data) {
         $http.post('http://localhost:1337/api/user/register', data)
             .success(function (data, status, headers, config) {
+                alertify.success("Registration successful! Welcome, " + data.username + "!");
                 $scope.data = data;
                 saveData(data);
                 console.log("User registered successfully!");
                 window.location.href = '/index.html#/login';
             })
             .error(function (data, status, headers, config) {
+                alertify.error("Registration failed.");
                 console.log("User register failed!");
             });
     }
 
     function logout() {
+        alertify.log("Logout successful!");
         sessionStorage.removeItem("access_token");
         sessionStorage.removeItem("username");
         window.location.href = '/index.html#/home';
@@ -140,11 +162,13 @@ var serviceRequester = (function () {
                 }
             })
             .success(function (data, status, headers, config) {
+                alertify.success("Ad published successfully!");
                 $scope.data = data;
                 console.log("Ad published successfully!");
                 window.location.href = '/index.html#/user/ads';
             })
             .error(function (data, status, headers, config) {
+                alertify.error("Ad publishing failed!");
                 console.log("Ad publishing failed!");
             });
     }
@@ -212,6 +236,7 @@ var serviceRequester = (function () {
         register: register,
         logout: logout,
         adAdd: adAdd,
+        editAd: editAd,
         getTowns: getTowns,
         getCategories: getCategories,
         getAdsByPageAndNumber: getAdsByPageAndNumber,
