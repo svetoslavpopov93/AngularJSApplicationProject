@@ -55,6 +55,7 @@
         serviceRequester.getTowns($scope, $http);
         serviceRequester.getUserProfile($scope, $http);
 
+
         $scope.isLogged = function () {
             if (sessionStorage.length > 0) {
                 return false;
@@ -62,7 +63,6 @@
 
             return true;
         }
-
         $scope.getPage = function (num) {
             var categoryId = window.categoryId;
             var townId = window.townId;
@@ -126,23 +126,42 @@
 
     adsApp.controller('UserAdsView', ['$scope', '$http', function ($scope, $http) {
         serviceRequester.getUserProfile($scope, $http);
-        serviceRequester.getUserProfile($scope, $http);
         $scope.data = serviceRequester.getUserAds($scope, $http);
         $scope.logout = function () {
             $scope.logout = serviceRequester.logout();
         }
 
-///////////////////////unfinished
-        $scope.edit = function (title, text, changeimage, ImageDataURL, categoryid, townid) {
+        $scope.adData = { townId: null, categoryId: null };
+        $scope.fileSelected = function (fileInputField) {
+            delete $scope.adData.imageDataUrl;
+            var file = fileInputField.files[0];
+            if (file.type.match(/image\/.*/)) {
+                var reader = new FileReader();
+                reader.onload = function () {
+                    $scope.adData.imageDataUrl = reader.result;
+                    $(".image-box").html("<img src='" + reader.result + "'>");
+                };
+                reader.readAsDataURL(file);
+            } else {
+                $(".image-box").html("<p>File type not supported!</p>");
+            }
+        };
+        $scope.editBtnClicked = function (data) {
+            serviceRequester.getCategories($scope, $http);
+            serviceRequester.getTowns($scope, $http);
+            var editPanel = $('#edit-panel');
+            editPanel.show();
+            $scope.currentAdData = data;
+        }
+        $scope.edit = function (id, title, text, categoryId, townId) {
             var data = JSON.stringify({
                 title: title,
                 text: text,
-                changeimage: changeimage,
-                ImageDataURL: ImageDataURL,
-                categoryid: categoryid,
-                townid: townid
+                imageDataUrl: $scope.adData.imageDataUrl,
+                categoryId: categoryId,
+                townId:townId
             });
-            serviceRequester.editAd($scope, $http, data, 1);
+            serviceRequester.editAd($scope, $http, data, id);
         }
     }]);
 

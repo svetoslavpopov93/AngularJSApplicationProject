@@ -136,6 +136,13 @@ margin-top: 0;
     width: 20px;
 }
 
+#edit-panel{
+    display: none;
+    position: fixed;
+    top: 100px;
+    background-color: green;
+}
+
 footer {
     clear: both;
     background-color: #A9D18E;
