@@ -31,6 +31,11 @@
         <input type="text" id="edit_title" ng-model="adData.title" />
         <label for="edit_text">Text</label>
         <input type="text" id="edit_text" ng-model="adData.text" />
+        <label>Change image:</label>
+        <label for="tr">Yes:</label>
+        <input type="radio" name="changeImg" value="true" id="tr" ng-model="adData.changeimage"/>
+        <label for="fl">No:</label>
+        <input type="radio" name="changeImg" value="false" id="fl" ng-model="adData.changeimage"/>
         <label for="edit_image">Image:</label>
         <input type="file" id="edit_image"
                onchange="angular.element(this).scope().fileSelected(this)" />
@@ -46,6 +51,6 @@
             <option value="null">None</option>
             <option ng-repeat="town in towns" value="{{town.id}}">{{town.name}}</option>
         </select>
-        <a ng-click="edit(currentAdData.id, adData.title, adData.text, adData.categoryId,adData.townId)">Edit</a>
+        <a ng-click="edit(adData)">Edit</a>
     </div>
 </section>

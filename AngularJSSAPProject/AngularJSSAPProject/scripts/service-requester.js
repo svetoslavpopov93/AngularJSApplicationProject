@@ -101,7 +101,7 @@ var serviceRequester = (function () {
     }
 
     function editAd($scope, $http, data, id) {
-        $http.get('http://localhost:1337/api/user/ads/' + id,
+        $http.put('http://localhost:1337/api/user/ads/' + id,
             data,
             {
                 headers: {

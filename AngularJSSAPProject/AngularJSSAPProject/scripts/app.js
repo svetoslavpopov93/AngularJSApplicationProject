@@ -86,7 +86,7 @@
             window.townId = undefined;
             serviceRequester.getAdsByPageAndNumber($scope, $http, 1);
         }
-        
+
         $scope.logout = function () {
             $scope.logout = serviceRequester.logout();
         }
@@ -151,17 +151,23 @@
             serviceRequester.getTowns($scope, $http);
             var editPanel = $('#edit-panel');
             editPanel.show();
-            $scope.currentAdData = data;
+            $scope.adData.id = data.id;
         }
-        $scope.edit = function (id, title, text, categoryId, townId) {
-            var data = JSON.stringify({
-                title: title,
-                text: text,
-                imageDataUrl: $scope.adData.imageDataUrl,
-                categoryId: categoryId,
-                townId:townId
-            });
-            serviceRequester.editAd($scope, $http, data, id);
+
+        $scope.edit = function (ad) {
+            var data = {
+                title: ad.title,
+                text: ad.text,
+                categoryId: ad.categoryId,
+                townId: ad.townId
+            };
+
+            if (ad.changeimage == "true") {
+                data.changeimage = ad.changeimage;
+                data.imageDataUrl = '' + $scope.adData.imageDataUrl;
+            }
+
+            serviceRequester.editAd($scope, $http, data, ad.id);
         }
     }]);
 
