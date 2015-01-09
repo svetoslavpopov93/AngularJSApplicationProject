@@ -126,6 +126,11 @@
 
     adsApp.controller('UserAdsView', ['$scope', '$http', function ($scope, $http) {
         serviceRequester.getUserProfile($scope, $http);
+        serviceRequester.getCategories($scope, $http);
+        serviceRequester.getTowns($scope, $http);
+
+        var editPanel = $('#edit-panel');
+
         $scope.data = serviceRequester.getUserAds($scope, $http);
         $scope.logout = function () {
             $scope.logout = serviceRequester.logout();
@@ -147,11 +152,26 @@
             }
         };
         $scope.editBtnClicked = function (data) {
-            serviceRequester.getCategories($scope, $http);
-            serviceRequester.getTowns($scope, $http);
-            var editPanel = $('#edit-panel');
             editPanel.show();
             $scope.adData.id = data.id;
+            $scope.adData.title = data.title;
+            $scope.adData.text = data.text;
+            $scope.adData.imageDataUrl = data.imageDataUrl;
+            for (var i = 0; i < $scope.towns.length; i++) {
+                if ($scope.towns[i].name == data.townName) {
+                    $scope.adData.townId = $scope.towns[i].id;
+                    break;
+                }
+            }
+
+
+
+            for (var i = 0; i < $scope.categories.length; i++) {
+                if ($scope.categories[i].name == data.categoryName) {
+                    $scope.adData.categoryId = $scope.categories[i].id;
+                    break;
+                }
+            }
         }
 
         $scope.edit = function (ad) {
@@ -167,7 +187,21 @@
                 data.imageDataUrl = '' + $scope.adData.imageDataUrl;
             }
 
-            serviceRequester.editAd($scope, $http, data, ad.id);
+            serviceRequester.editAd($scope, $http, data, ad.id, editPanel);
+        }
+
+        $scope.delete = function (ad) {
+            alertify.confirm("Message", function (e) {
+                if (e) {
+                    console.log("ad: " + ad);   
+                } else {
+                    // user clicked "cancel"
+                }
+            });
+        }
+
+        $scope.closeEditor = function () {
+            editPanel.hide();
         }
     }]);
 

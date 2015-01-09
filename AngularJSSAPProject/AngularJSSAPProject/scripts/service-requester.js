@@ -100,7 +100,7 @@ var serviceRequester = (function () {
             });
     }
 
-    function editAd($scope, $http, data, id) {
+    function editAd($scope, $http, data, id, editPanel) {
         $http.put('http://localhost:1337/api/user/ads/' + id,
             data,
             {
@@ -109,8 +109,9 @@ var serviceRequester = (function () {
                 }
             })
             .success(function (data, status, headers, config) {
-                console.log(data);
-                console.log(status);
+                getUserAds($scope, $http);
+                alertify.success("Ad edited successfully!");
+                editPanel.hide();
             })
             .error(function (data, status, headers, config) {
                 console.log("ESDASD");
@@ -187,7 +188,7 @@ var serviceRequester = (function () {
     function getCategories($scope, $http) {
         $http.get('http://localhost:1337/api/categories').
                 success(function (data, status, headers, config) {
-                    $scope.categories = data
+                    $scope.categories = data;
                     console.log("Categories loaded successfully!");
                     console.log(data[0]);
                 }).

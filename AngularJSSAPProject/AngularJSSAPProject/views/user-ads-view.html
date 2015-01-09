@@ -21,12 +21,13 @@
                 </div>
                 <div>
                     <a ng-click="editBtnClicked(ad)">Edit</a>
-                    <a>Delete</a>
+                    <a ng-click="delete(ad)">Delete</a>
                 </div>
             </div>
         </li>
     </ul>
     <div id="edit-panel">
+        <a ng-click="closeEditor()">X</a>
         <label for="edit_title">Title</label>
         <input type="text" id="edit_title" ng-model="adData.title" />
         <label for="edit_text">Text</label>
