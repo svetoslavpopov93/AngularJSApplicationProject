@@ -4,6 +4,5 @@ TODO:
 6. implement serialization on input fields
 9. fix double loading
 14. remove controller.js
-16. move logout button and name in the navigation panel
 17. fix mouse cursor on the buttons
 18. ad state modifying functionality

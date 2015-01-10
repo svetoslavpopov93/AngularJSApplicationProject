@@ -92,6 +92,11 @@ var serviceRequester = (function () {
             })
             .success(function (data, status, headers, config) {
                 $scope.user = data;
+                $scope.userForInfo = {
+                    name: data.name,
+                    email: data.email,
+                    phoneNumber: data.phoneNumber
+                };
                 console.log(data);
                 console.log("User profile info recieved successfully!");
             })
@@ -161,6 +166,40 @@ var serviceRequester = (function () {
             .error(function (data, status, headers, config) {
                 alertify.error("Registration failed.");
                 console.log("User register failed!");
+            });
+    }
+
+    function changePassword($scope, $http, data) {
+        $http.put('http://localhost:1337/api/user/changepassword/',
+            data,
+            {
+                headers: {
+                    Authorization: "Bearer " + sessionStorage.getItem("access_token")
+                }
+            })
+            .success(function (data, status, headers, config) {
+                getUserProfile($scope, $http);
+                alertify.success("Password changed successfully!");
+            })
+            .error(function (data, status, headers, config) {
+                alertify.error("Failed to change password. Please make sure that the information is correct.");
+            });
+    }
+
+    function editPersonalInfo($scope, $http, data) {
+        $http.put('http://localhost:1337/api/user/profile/',
+            data,
+            {
+                headers: {
+                    Authorization: "Bearer " + sessionStorage.getItem("access_token")
+                }
+            })
+            .success(function (data, status, headers, config) {
+                getUserProfile($scope, $http);
+                alertify.success("User personal info changed successfully!");
+            })
+            .error(function (data, status, headers, config) {
+                alertify.error("Failed to edit user personal info.");
             });
     }
 
@@ -251,6 +290,8 @@ var serviceRequester = (function () {
         getUserAds: getUserAds,
         login: login,
         register: register,
+        changePassword: changePassword,
+        editPersonalInfo: editPersonalInfo,
         logout: logout,
         adAdd: adAdd,
         editAd: editAd,

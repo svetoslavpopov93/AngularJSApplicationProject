@@ -7,11 +7,18 @@
 
 <section id="main_section">
     <h2>Login Panel</h2>
-    <hr />
-    <label for="login-view-username">Username:</label>
-    <input type="text" id="login-view-username" ng-model="username"/>
-    <label for="login-view-password" >Password:</label>
-    <input type="text" id="login-view-password" ng-model="password"/>
-    <a ng-click="login(username, password)">Login</a>
-    <a href="#/register">Register here</a>
+    <form>
+        <hr />
+        <div>
+            <label for="login-view-username">Username:</label>
+            <input type="text" id="login-view-username" ng-model="username" />
+        </div><div>
+            <label for="login-view-password">Password:</label>
+            <input type="password" id="login-view-password" ng-model="password" />
+        </div>
+        <div>
+            <input type="submit" ng-click="login(username, password)" value="Login" />
+            <a href="#/register">Register here</a>
+        </div>
+    </form>
 </section>

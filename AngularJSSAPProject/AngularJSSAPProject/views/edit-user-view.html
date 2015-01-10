@@ -9,4 +9,33 @@
 
 <section id="main_section">
     <h2>Edit user panel</h2>
+    <form>
+        <fieldset>
+            <legend>Edit personal info</legend>
+            <label for="edit_name">Name:</label>
+            <input type="text" id="edit_name" ng-model="userForInfo.name" />
+            <label for="edit_email">Email:</label>
+            <input type="text" id="edit_email" ng-model="userForInfo.email" />
+            <label for="edit_phone">Phone:</label>
+            <input type="text" id="edit_phone" ng-model="userForInfo.phoneNumber" />
+            <label for="edit_town">TownId(optional)</label>
+            <select id="edit_town" ng-model="userForInfo.town">
+                <option ng-repeat="town in towns" value="{{town.id}}">{{town.name}}</option>
+            </select>
+            <input type="submit" ng-click="editPersonalInfo(userForInfo.name, userForInfo.email, userForInfo.phoneNumber, userForInfo.town)" value="Edit Info" />
+        </fieldset>
+    </form>
+
+    <form>
+        <fieldset>
+            <legend>Change password</legend>
+            <label for="pass_old">Old password:</label>
+            <input type="password" id="pass_old" ng-model="oldPassword" />
+            <label for="pass_new">New password:</label>
+            <input type="password" id="pass_new" ng-model="newPassword" />
+            <label for="pass_confirm">Confirm password:</label>
+            <input type="password" id="pass_confirm" ng-model="confirmPassword"/>
+            <input type="submit" ng-click="changePassword(oldPassword, newPassword, confirmPassword)" value="Change password"/>
+        </fieldset>
+    </form>
 </section>

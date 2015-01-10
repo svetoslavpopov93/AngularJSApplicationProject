@@ -236,9 +236,34 @@
     adsApp.controller('EditUserController', ['$scope', '$http', function ($scope, $http) {
         //TODO: implement edit user functionality
         serviceRequester.getUserProfile($scope, $http);
+        serviceRequester.getCategories($scope, $http);
+        serviceRequester.getTowns($scope, $http);
+
         $scope.logout = function () {
             $scope.logout = serviceRequester.logout();
         }
 
+        $scope.editPersonalInfo = function (name, email, phone, town) {
+            var data = JSON.stringify({
+                name: name,
+                email: email,
+                phoneNumber: phone
+            });
+
+            if (town != null | town != undefined) {
+                data.townId = town
+            }
+
+            serviceRequester.editPersonalInfo($scope, $http, data);
+        }
+        $scope.changePassword = function (oldPassword, newPassword, confirmPassword) {
+            var data = JSON.stringify({
+                oldPassword: oldPassword,
+                newPassword: newPassword,
+                confirmPassword: confirmPassword
+            });
+
+            serviceRequester.changePassword($scope, $http, data);
+        }
     }]);
 }());
