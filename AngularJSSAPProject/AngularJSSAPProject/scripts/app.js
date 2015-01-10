@@ -191,11 +191,10 @@
         }
 
         $scope.delete = function (ad) {
-            alertify.confirm("Message", function (e) {
+            alertify.confirm(('Delete ad "'+ ad.title + '"'), function (e) {
                 if (e) {
-                    console.log("ad: " + ad);   
+                    serviceRequester.deleteAd($scope, $http, ad.id);
                 } else {
-                    // user clicked "cancel"
                 }
             });
         }

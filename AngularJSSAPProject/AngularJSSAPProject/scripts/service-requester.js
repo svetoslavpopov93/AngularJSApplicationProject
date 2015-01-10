@@ -114,7 +114,23 @@ var serviceRequester = (function () {
                 editPanel.hide();
             })
             .error(function (data, status, headers, config) {
-                console.log("ESDASD");
+                alertify.error("Failed to edit ad.");
+            });
+    }
+
+    function deleteAd($scope, $http, id) {
+        $http.delete('http://localhost:1337/api/user/ads/' + id,
+            {
+                headers: {
+                    Authorization: "Bearer " + sessionStorage.getItem("access_token")
+                }
+            })
+            .success(function (data, status, headers, config) {
+                alertify.success("Ad deleted successfully!");
+                editPanel.hide();
+            })
+            .error(function (data, status, headers, config) {
+                alertify.error("Failed to delete ad.");
             });
     }
 
@@ -244,6 +260,7 @@ var serviceRequester = (function () {
         getAdsWithCategoryFilter: getAdsWithCategoryFilter,
         getAdsWithTownFilter: getAdsWithTownFilter,
         getAdsByPageAndFilers: getAdsByPageAndFilers,
-        getUserProfile: getUserProfile
+        getUserProfile: getUserProfile,
+        deleteAd: deleteAd
     };
 }());
