@@ -4,26 +4,66 @@
     font-size: 18px;
 }
 
-body{
-    font-family: Calibri;
+body {
+    font-family: Corbel;
 }
 
-ul{
+    body hr {
+        width: 96%;
+        text-align: center;
+    }
+
+ul {
     list-style-type: none;
 }
 
-header{
-    background-color: #A9D18E;
-    height: 60px;
-    margin-bottom: 30px;
-    text-align: center;
-    font-size: 1.3em;
+a {
+    text-decoration: none;
+    color: #81CBF0;
+}
+
+a:hover{
+    cursor: pointer;
+    color: white;
+}
+
+header {
+    background-color: white;
+    height: 70px;
+    text-align: left;
+    padding-left: 50px;
     font-family: Verdana;
 }
 
-aside{
+        header a span {
+            font-size: 3em;
+            font-family: Buxton Sketch;
+            color: #3693CE;
+        }
+
+        header a :hover {
+            color: #83CDF6;
+        }
+        
+    input[type="text"] {
+        color: #3693CE;
+    }
+
+    input[type="password"]{
+        color: #3693CE;
+    }
+
+#upper_hr {
+    margin-bottom: 50px;
+}
+
+#lower_hr {
+    margin-top: 50px;
+}
+
+aside {
     display: inline-block;
-    background-color: #A9D18E;
+    background-color: #3693CE;
     width: 260px;
 }
 
@@ -31,89 +71,177 @@ aside{
     float: left;
     margin-left: 50px;
     height: 200px;
-} 
-
-.left_aside > a {
-    display: block;
+    box-shadow: 1px 1px 1px #888888;
+    font-family: Gabriola;
+    font-weight: bold;
+    font-size: 1.3em;
+    color: #81CBF7;
+            padding: 10px;
+            border-radius: 3px;
 }
 
-#right_aside{
+    .left_aside > a {
+        display: block;
+        text-decoration: none;
+        color: #81CBF7;
+    }
+
+        .left_aside > a:hover {
+            color: white;
+        }
+
+#right_aside {
     display: inline-block;
     float: right;
     margin-right: 50px;
     min-height: 230px;
-    white-space:nowrap;
+    white-space: nowrap;
+    box-shadow: 1px 1px 1px #888888;
+    font-family: Gabriola;
+    font-weight: bold;
+    font-size: 1.3em;
+    color: #81CBF7;
+            padding: 10px;
+            border-radius: 3px;
 }
 
-#right_aside ul{
+    #right_aside ul {
+        display: inline-block;
+            padding-left: 10px;
+    }
+
+        #right_aside ul li {
+            max-width: 240px;
+            overflow: hidden;
+        }
+
+        #right_aside ul li a:hover {
+            cursor:pointer;
+            color: white;
+        }
+
+        .filter_title{
+            cursor: default;
+            color: #7BCBFA;
+            text-decoration: underline;
+        }
+
+#main_section {
     display: inline-block;
-}
-
-#right_aside ul li {
-    max-width: 240px;
-    overflow: hidden;
-}
-
-#main_section{
-    display: inline-block;
-    background-color: #A9D18E;
     width: 600px;
     margin-left: 75px;
     min-height: 100%;
+    color: #3693CE;
 }
+
+.ad_element {
+    border: 2px solid #3693CE;
+    margin-bottom: 30px;
+    clear: both;
+    min-height: 520px;
+    border-radius: 5px;
+}
+
 #main_section ul li h2 {
     margin-left: 20px;
     max-width: 580px;
     max-height: 35px;
 }
 
-#main_section ul li h2 span{
-    font-size: 1.1em;
-}
+    #main_section ul li h2 span {
+        font-size: 1.1em;
+    }
 
-#main_section ul li h2 .ad-title-span{
-    width: 405px;
-    max-width: 405px;
-    max-height: 29px;
-    overflow: hidden;
-    display: inline-block;
-}
+    #main_section ul li h2 .ad-title-span {
+        width: 405px;
+        max-width: 405px;
+        max-height: 36px;
+        overflow: hidden;
+        display: inline-block;
+        text-decoration: underline;
+    }
 
-#main_section ul li div .ad-image{
+#main_section ul li div .ad-image {
     float: left;
-    width: 180px;
+    width: 178px;
     height: 250px;
     margin-left: 20px;
+    border: 1px solid #3693CE;
+    border-radius: 3px;
 }
 
-.ad-txt-section{
-width: 350px;
-margin: 25px;
-margin-top: 0;
+.ad-txt-section {
+    width: 345px;
+    margin: 25px;
+    margin-top: 0;
     float: right;
     display: inline-block;
 }
 
-#main_section ul li h2{
+#main_section ul li h2 {
     clear: both;
 }
 
-#main_section ul li div .ad_txt{
-    height:250px;
+#main_section ul li div .ad_txt {
+    height: 250px;
     max-height: 250px;
     word-break: break-all;
     word-wrap: break-word;
     margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #3693CE;
+    color: #3693CE;
+    background-color: white;
+    border-radius: 3px;
 }
 
-.bg-white{
-    background-color:#C5E0B4;
+#login_form{
+    border: 1px solid #3693CE;
+    border-radius: 3px;
+    padding: 15px;
+    min-height: 360px;
+}
+
+#login_form form {
+    margin-left: 100px;
+    max-width: 320px;
+}
+
+#login_form form input[type="submit"]{
+    color: #3693CE;
+    font-family: Gabriola;
+    font-size: 1.3em;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.left_fl{
+    clear: both;
+    float:left;
+}
+
+.right_fl{
+    float: right;
+}
+
+.pass_row{
+    margin-top: 10px;
+}
+
+#login_btn_container{
+    margin-top: 20px;
+}
+
+.bg-white {
+    background-color: #3693CE;
+    border-radius: 2px;
+    color: white;
     padding: 5px;
     clear: both;
 }
 
-.p-clear{
-    clear:both;
+.p-clear {
+    clear: both;
     margin-top: 20px;
 }
 
@@ -123,20 +251,27 @@ margin-top: 0;
     float: right;
 }
 
-#page-navigation{
+#page-navigation {
     clear: both;
     text-align: center;
     margin-top: 50px;
     margin-bottom: 20px;
 }
 
-#page-navigation ul li{
-    display: inline-block;
-    overflow: hidden;
-    width: 20px;
-}
+    #page-navigation ul li {
+        display: inline-block;
+        overflow: hidden;
+        width: 20px;
+    }
 
-#edit-panel{
+    #page-navigation ul li a:hover{
+        display: inline-block;
+        width: 100%;
+        border-radius: 3px;
+        background-color: #7BCBFA;
+    }
+
+#edit-panel {
     display: none;
     position: fixed;
     top: 100px;
@@ -145,11 +280,15 @@ margin-top: 0;
 
 footer {
     clear: both;
-    background-color: #A9D18E;
+    background-color: white;
     height: 28px;
     margin-top: 30px;
     text-align: center;
-    font-family: Verdana;
-    font-weight: bold;
-    font-size: 1.1em;
 }
+
+    footer p {
+        font-family: 'Comic Sans MS';
+        font-weight: bold;
+        font-size: 0.7em;
+        color: #3092CF;
+    }

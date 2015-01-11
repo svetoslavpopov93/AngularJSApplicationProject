@@ -15,12 +15,11 @@
 </aside>
 
 <section id="main_section">
-    <h2>All Ads</h2>
     <div>
         <ul>
-            <li ng-repeat="ad in data.ads">
-                <h2 class="ad-title"><span class="ad-title-span">{{ad.title}}</span><span>{{ad.date | date:'dd-MMM-yyyy'}}</span></h2>
+            <li ng-repeat="ad in data.ads" class="ad_element">
                 <div>
+                    <h2 class="ad-title"><span class="ad-title-span">{{ad.title}}</span><span>{{ad.date | date:'dd-MMM-yyyy'}}</span></h2>
                     <img src="http://www.goodtile.co.kr/_skin/basic/images/icon_no_images.jpg" ng-src="{{ad.imageDataUrl}}" class="ad-image" />
                     <div class="ad-txt-section">
                         <p class="ad_txt bg-white">{{ad.text}}</p>
@@ -45,7 +44,7 @@
     <div>
         <a ng-click="clearFilters()">Clear Filters</a>
         <hr />
-        <h2>Categories</h2>
+        <h2 class="filter_title">Categories</h2>
         <hr />
         <ul>
             <li ng-repeat="cat in categories">
@@ -54,7 +53,7 @@
         </ul>
     </div>
     <div>
-        <h2>Towns</h2>
+        <h2 class="filter_title">Towns</h2>
         <hr />
         <ul>
             <li ng-repeat="town in towns">

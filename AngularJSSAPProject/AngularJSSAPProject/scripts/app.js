@@ -53,8 +53,9 @@
 
         serviceRequester.getCategories($scope, $http);
         serviceRequester.getTowns($scope, $http);
-        serviceRequester.getUserProfile($scope, $http);
-
+        if (sessionStorage.length > 0) {
+            serviceRequester.getUserProfile($scope, $http);
+        }
 
         $scope.isLogged = function () {
             if (sessionStorage.length > 0) {
@@ -191,7 +192,7 @@
         }
 
         $scope.delete = function (ad) {
-            alertify.confirm(('Delete ad "'+ ad.title + '"'), function (e) {
+            alertify.confirm(('Delete ad "' + ad.title + '"'), function (e) {
                 if (e) {
                     serviceRequester.deleteAd($scope, $http, ad.id);
                 } else {

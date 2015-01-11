@@ -6,19 +6,22 @@
 </aside>
 
 <section id="main_section">
-    <h2>Login Panel</h2>
-    <form>
+    <div id="login_form">
+        <h2>Login Panel</h2>
         <hr />
-        <div>
-            <label for="login-view-username">Username:</label>
-            <input type="text" id="login-view-username" ng-model="username" />
-        </div><div>
-            <label for="login-view-password">Password:</label>
-            <input type="password" id="login-view-password" ng-model="password" />
-        </div>
-        <div>
-            <input type="submit" ng-click="login(username, password)" value="Login" />
-            <a href="#/register">Register here</a>
-        </div>
-    </form>
+        <form>
+            <div>
+                <label for="login-view-username" class="left_fl">Username:</label>
+                <input type="text" id="login-view-username" class="right_fl" ng-model="username" />
+            </div>
+            <div>
+                <label for="login-view-password" class="left_fl pass_row">Password:</label>
+                <input type="password" id="login-view-password" class="right_fl pass_row" ng-model="password" />
+            </div>
+            <div class="right_fl" id="login_btn_container">
+                <input type="submit" ng-click="login(username, password)" value="Login" />
+                <a href="#/register">Register here</a>
+            </div>
+        </form>
+    </div>
 </section>

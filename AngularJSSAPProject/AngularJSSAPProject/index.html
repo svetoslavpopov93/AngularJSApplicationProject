@@ -9,20 +9,26 @@
 </head>
 <body>
     <header ng-controller="HeaderController">
-        <h1><a href="#/home"><span>Ads</span><span id="header-right"></span></a></h1>
+        <h1><a href="#/home"><span>Ads System</span></a></h1>
     </header>
-
+    <hr id="upper_hr"/>
+    
     <div id="wrapper" ng-view></div>
-
+    
+    <hr id="lower_hr" />
     <footer>
-        &copy; 2014 by Software University Foundation, No Rights Reserved
+        <p>
+            &copy; 2015 by Svetoslav Popov</a>
+        </p>
+        <p>
+            No Rights Reserved
+        </p>
     </footer>
     <script src="scripts/alertify.js"></script>
     <script src="scripts/jquery-2.1.3.min.js"></script>
     <script src="scripts/angular.js"></script>
     <script src="scripts/angular-route.js"></script>
     <script src="scripts/service-requester.js"></script>
-    <script src="scripts/controllers.js"></script>
     <script src="scripts/app.js"></script>
 </body>
 </html>

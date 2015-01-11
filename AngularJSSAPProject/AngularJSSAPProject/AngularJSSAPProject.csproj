@@ -64,7 +64,6 @@
     <Content Include="scripts\angular.js" />
     <Content Include="scripts\angular-route.js" />
     <Content Include="scripts\app.js" />
-    <Content Include="scripts\controllers.js" />
     <Content Include="scripts\jquery-2.1.3.min.js" />
     <Content Include="scripts\service-requester.js" />
     <Content Include="styles\alertify.bootstrap.css" />

@@ -1,8 +1,11 @@
 TODO: 
 1. Implement "please wait" functionality
-5. fix header
 6. implement serialization on input fields
 9. fix double loading
-14. remove controller.js
 17. fix mouse cursor on the buttons
 18. ad state modifying functionality
+19 test the bug issues
+20. refactor base URL
+!!!!!!!!!!!!!!!!!!!!!!!!21. fix console error
+21. refresh my ads view
+21. set new image radio button default value
