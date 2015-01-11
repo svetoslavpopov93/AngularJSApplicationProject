@@ -1,7 +1,0 @@
-TODO: 
-1. Implement "please wait" functionality
-6. implement serialization on input fields
-9. fix double loading
-17. fix mouse cursor on the buttons
-18. ad state modifying functionality
-19 test the bug issues
