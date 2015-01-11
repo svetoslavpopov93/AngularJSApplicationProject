@@ -3,9 +3,10 @@
 
 var serviceRequester = (function () {
     var defaultPageSize = 4;
+    var baseUrl = "http://localhost:1337";
 
     function getAllAds($scope, $http) {
-        $http.get('http://localhost:1337/api/ads').
+        $http.get(baseUrl + '/api/ads').
         success(function (data, status, headers, config) {
             $scope.data = data;
             console.log("Ads loaded successfully!");
@@ -16,7 +17,7 @@ var serviceRequester = (function () {
     }
 
     function getAdsByPageAndNumber($scope, $http, startPage) {
-        $http.get('http://localhost:1337/api/ads?pagesize=' + defaultPageSize + '&startpage=' + startPage)
+        $http.get(baseUrl + '/api/ads?pagesize=' + defaultPageSize + '&startpage=' + startPage)
             .success(function (data, status, headers, config) {
                 $scope.data = data;
                 var pageButtonsData = [];
@@ -46,7 +47,7 @@ var serviceRequester = (function () {
             townStr = "&townId=" + townId;
         }
 
-        $http.get('http://localhost:1337/api/ads?pagesize=' + defaultPageSize + '&startpage=' + startPage + categoryStr + townStr)
+        $http.get(baseUrl + '/api/ads?pagesize=' + defaultPageSize + '&startpage=' + startPage + categoryStr + townStr)
             .success(function (data, status, headers, config) {
                 $scope.data = data;
                 var pageButtonsData = [];
@@ -69,7 +70,7 @@ var serviceRequester = (function () {
         headers = { Authorization: 'Bearer ' + sessionStorage.getItem('access_token') };
 
 
-        $http.get('http://localhost:1337/api/user/ads', {
+        $http.get(baseUrl + '/api/user/ads', {
             headers: {
                 Authorization: "Bearer " + sessionStorage.getItem("access_token")
             }
@@ -84,7 +85,7 @@ var serviceRequester = (function () {
     }
 
     function getUserProfile($scope, $http) {
-        $http.get('http://localhost:1337/api/user/profile',
+        $http.get(baseUrl + '/api/user/profile',
             {
                 headers: {
                     Authorization: "Bearer " + sessionStorage.getItem("access_token")
@@ -106,7 +107,7 @@ var serviceRequester = (function () {
     }
 
     function editAd($scope, $http, data, id, editPanel) {
-        $http.put('http://localhost:1337/api/user/ads/' + id,
+        $http.put(baseUrl + '/api/user/ads/' + id,
             data,
             {
                 headers: {
@@ -124,7 +125,7 @@ var serviceRequester = (function () {
     }
 
     function deleteAd($scope, $http, id) {
-        $http.delete('http://localhost:1337/api/user/ads/' + id,
+        $http.delete(baseUrl + '/api/user/ads/' + id,
             {
                 headers: {
                     Authorization: "Bearer " + sessionStorage.getItem("access_token")
@@ -132,6 +133,7 @@ var serviceRequester = (function () {
             })
             .success(function (data, status, headers, config) {
                 alertify.success("Ad deleted successfully!");
+                getUserAds($scope, $http);
                 editPanel.hide();
             })
             .error(function (data, status, headers, config) {
@@ -140,12 +142,11 @@ var serviceRequester = (function () {
     }
 
     function login($scope, $http, data) {
-        $http.post('http://localhost:1337/api/user/login', data)
+        $http.post(baseUrl + '/api/user/login', data)
             .success(function (data, status, headers, config) {
                 alertify.success("Login successful! Welcome, " + data.username + "!");
                 $scope.data = data;
                 saveData(data);
-                console.log("User logged successfully!");
                 window.location.href = '/index.html#/home';
             })
             .error(function (data, status, headers, config) {
@@ -155,7 +156,7 @@ var serviceRequester = (function () {
     }
 
     function register($scope, $http, data) {
-        $http.post('http://localhost:1337/api/user/register', data)
+        $http.post(baseUrl + '/api/user/register', data)
             .success(function (data, status, headers, config) {
                 alertify.success("Registration successful! Welcome, " + data.username + "!");
                 $scope.data = data;
@@ -170,7 +171,7 @@ var serviceRequester = (function () {
     }
 
     function changePassword($scope, $http, data) {
-        $http.put('http://localhost:1337/api/user/changepassword/',
+        $http.put(baseUrl + '/api/user/changepassword/',
             data,
             {
                 headers: {
@@ -187,7 +188,7 @@ var serviceRequester = (function () {
     }
 
     function editPersonalInfo($scope, $http, data) {
-        $http.put('http://localhost:1337/api/user/profile/',
+        $http.put(baseUrl + '/api/user/profile/',
             data,
             {
                 headers: {
@@ -211,7 +212,7 @@ var serviceRequester = (function () {
     }
 
     function adAdd($scope, $http, data) {
-        $http.post('http://localhost:1337/api/user/ads',
+        $http.post(baseUrl + '/api/user/ads',
             data, {
                 headers: {
                     Authorization: "Bearer " + sessionStorage.getItem("access_token")
@@ -230,7 +231,7 @@ var serviceRequester = (function () {
     }
 
     function getTowns($scope, $http) {
-        $http.get('http://localhost:1337/api/towns').
+        $http.get(baseUrl + '/api/towns').
                 success(function (data, status, headers, config) {
                     $scope.towns = data;
                     console.log("Towns loaded successfully!");
@@ -241,7 +242,7 @@ var serviceRequester = (function () {
     }
 
     function getCategories($scope, $http) {
-        $http.get('http://localhost:1337/api/categories').
+        $http.get(baseUrl + '/api/categories').
                 success(function (data, status, headers, config) {
                     $scope.categories = data;
                     console.log("Categories loaded successfully!");
@@ -255,7 +256,7 @@ var serviceRequester = (function () {
     function getAdsWithCategoryFilter($scope, $http) {
         var categoryId = window.categoryId;
 
-        $http.get('http://localhost:1337/api/ads?categoryid=' + categoryId + '&pagesize=5&startpage=1')
+        $http.get(baseUrl + '/api/ads?categoryid=' + categoryId + '&pagesize=5&startpage=1')
                     .success(function (data, status, headers, config) {
                         $scope.data = data;
                         console.log(data);
@@ -269,7 +270,7 @@ var serviceRequester = (function () {
     function getAdsWithTownFilter($scope, $http) {
         var townId = window.townId;
 
-        $http.get('http://localhost:1337/api/ads?townId=' + townId + '&pagesize=5&startpage=1')
+        $http.get(baseUrl + '/api/ads?townId=' + townId + '&pagesize=5&startpage=1')
                     .success(function (data, status, headers, config) {
                         $scope.data = data;
                         console.log(data);

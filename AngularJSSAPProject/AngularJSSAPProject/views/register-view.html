@@ -6,39 +6,44 @@
 </aside>
 
 <section id="main_section">
-    <h2>Register Panel</h2>
-    <form>
-        <div>
-            <label for="register-view-username">Username:</label>
-            <input type="text" id="register-view-username" ng-model="username" />
-        </div>
-        <div>
-            <label for="register-view-password">Password:</label>
-            <input type="password" id="register-view-password" ng-model="password" />
-        </div>
-        <div>
-            <label for="register-view-repeat-password">Repeat password:</label>
-            <input type="password" id="register-view-repeat-password" ng-model="repeat" />
-        </div>
-        <label for="register-view-name">Name:</label>
-        <input type="text" id="register-view-name" ng-model="name" />
-        <div>
-            <label for="register-view-email">Email:</label>
-            <input type="text" id="register-view-email" ng-model="mail" />
-        </div>
-        <div>
-            <label for="register-view-phone">Phone:</label>
-            <input type="text" id="register-view-phone" ng-model="phone" />
-        </div>
-        <div>
-            <label for="register-view-towns">Town:</label>
-            <select id="register-view-towns" ng-model="town">
-                <option ng-repeat="town in towns" value="{{town.id}}">{{town.name}}</option>
-            </select>
-        </div>
-        <div>
-            <input type="submit" ng-click="register(username, password, repeat, name, mail, phone, town)" value="Register">
-            <a href="#/login">Login here</a>
-        </div>
-    </form>
+    <div id="register_form">
+        <h2>Register Panel</h2>
+        <form>
+            <div class="register_clear">
+                <label for="register-view-username">Username:</label>
+                <input type="text" id="register-view-username" class="register_float" ng-model="username" />
+            </div>
+            <div class="register_clear">
+                <label for="register-view-password">Password:</label>
+                <input type="password" id="register-view-password" class="register_float" ng-model="password" />
+            </div>
+            <div class="register_clear">
+                <label for="register-view-repeat-password">Repeat password:</label>
+                <input type="password" id="register-view-repeat-password" class="register_float" ng-model="repeat" />
+            </div>
+            <div class="register_clear">
+                <label for="register-view-name">Name:</label>
+                <input type="text" id="register-view-name" class="register_float" ng-model="name" />
+            </div>
+            <div class="register_clear">
+                <label for="register-view-email">Email:</label>
+                <input type="text" id="register-view-email" class="register_float" ng-model="mail" />
+            </div>
+            <div class="register_clear">
+                <label for="register-view-phone">Phone:</label>
+                <input type="text" id="register-view-phone" class="register_float" ng-model="phone" />
+            </div>
+            <div class="register_clear">
+                <label for="register-view-towns">Town:</label>
+                <select id="register-view-towns" ng-model="town" class="register_float">
+                    <option ng-repeat="town in towns" value="{{town.id}}">{{town.name}}</option>
+                </select>
+            </div>
+            <div class="register_clear" id="register_btn_container">
+                <input type="submit" ng-click="register(username, password, repeat, name, mail, phone, town)" value="Register" class="register_float">
+                <a href="#/login" class="register_float">Login here</a>
+            </div>
+            <div class="register_clear"></div>
+        </form>
+    </div>
 </section>

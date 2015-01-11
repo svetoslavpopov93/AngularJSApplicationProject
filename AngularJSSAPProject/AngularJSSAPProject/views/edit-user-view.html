@@ -1,5 +1,6 @@
 ﻿<aside class="left_aside">
-    <h4>{{user.name}}</h4>
+    <h4 id="user_name">Hello, {{user.name}}!</h4>
+    <hr />
     <a href="#/">Home</a>
     <a href="#/user/ads">My Ads</a>
     <a href="#/user/ads/publish">Publish New Ad</a>
@@ -8,34 +9,50 @@
 </aside>
 
 <section id="main_section">
-    <h2>Edit user panel</h2>
-    <form>
-        <fieldset>
-            <legend>Edit personal info</legend>
-            <label for="edit_name">Name:</label>
-            <input type="text" id="edit_name" ng-model="userForInfo.name" />
-            <label for="edit_email">Email:</label>
-            <input type="text" id="edit_email" ng-model="userForInfo.email" />
-            <label for="edit_phone">Phone:</label>
-            <input type="text" id="edit_phone" ng-model="userForInfo.phoneNumber" />
-            <label for="edit_town">TownId(optional)</label>
-            <select id="edit_town" ng-model="userForInfo.town">
-                <option ng-repeat="town in towns" value="{{town.id}}">{{town.name}}</option>
-            </select>
-            <input type="submit" ng-click="editPersonalInfo(userForInfo.name, userForInfo.email, userForInfo.phoneNumber, userForInfo.town)" value="Edit Info" />
-        </fieldset>
-    </form>
+    <div>
+        <h2>Edit user panel</h2>
+        <form>
+            <fieldset>
+                <legend>Edit personal info</legend>
+                <div>
+                    <label for="edit_name">Name:</label>
+                    <input type="text" id="edit_name" ng-model="userForInfo.name" />
+                    <label for="edit_email">Email:</label>
+                    <input type="text" id="edit_email" ng-model="userForInfo.email" />
+                </div>
+                <div>
+                    <label for="edit_phone">Phone:</label>
+                    <input type="text" id="edit_phone" ng-model="userForInfo.phoneNumber" />
+                    <label for="edit_town">TownId(optional)</label>
+                    <select id="edit_town" ng-model="userForInfo.town">
+                        <option ng-repeat="town in towns" value="{{town.id}}">{{town.name}}</option>
+                    </select>
+                </div>
+                <div>
+                    <input type="submit" class="edit_view_btn" ng-click="editPersonalInfo(userForInfo.name, userForInfo.email, userForInfo.phoneNumber, userForInfo.town)" value="Edit Info" />
+                </div>
+            </fieldset>
+        </form>
 
-    <form>
-        <fieldset>
-            <legend>Change password</legend>
-            <label for="pass_old">Old password:</label>
-            <input type="password" id="pass_old" ng-model="oldPassword" />
-            <label for="pass_new">New password:</label>
-            <input type="password" id="pass_new" ng-model="newPassword" />
-            <label for="pass_confirm">Confirm password:</label>
-            <input type="password" id="pass_confirm" ng-model="confirmPassword"/>
-            <input type="submit" ng-click="changePassword(oldPassword, newPassword, confirmPassword)" value="Change password"/>
-        </fieldset>
-    </form>
+        <form>
+            <fieldset>
+                <legend>Change password</legend>
+                <div class="register_clear">
+                    <label for="pass_old">Old password:</label>
+                    <input type="password" id="pass_old" class="register_float" ng-model="oldPassword" />
+                </div>
+                <div class="register_clear">
+                    <label for="pass_new">New password:</label>
+                    <input type="password" id="pass_new" class="register_float" ng-model="newPassword" />
+                </div>
+                <div class="register_clear">
+                    <label for="pass_confirm">Confirm password:</label>
+                    <input type="password" id="pass_confirm" class="register_float" ng-model="confirmPassword" />
+                </div>
+                <div class="register_clear">
+                    <input type="submit" class="register_float edit_view_btn" ng-click="changePassword(oldPassword, newPassword, confirmPassword)" value="Change password" />
+                </div>
+            </fieldset>
+        </form>
+    </div>
 </section>
