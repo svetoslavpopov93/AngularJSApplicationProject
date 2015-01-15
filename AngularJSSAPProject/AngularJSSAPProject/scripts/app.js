@@ -267,4 +267,9 @@
             serviceRequester.changePassword($scope, $http, data);
         }
     }]);
+
+    //app.run(["$rootScope", "$location", "AccountService", function ($rootScope, $location, AccountService) {
+    //    $rootScope.$on("$locationChangeStart", function (e) {
+        
+    //    }}]))
 }());
